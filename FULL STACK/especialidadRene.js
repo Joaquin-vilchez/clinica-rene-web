@@ -145,11 +145,11 @@ function crearCardHTML(esp) {
 
 function getIconForEspecialidad(nombre) {
     const map = {
-        'medicina general': '/IMG_RENE/medGeneral.jpg',
-        'dermatologia': '/IMG_RENE/dermatologia.jpg',
-        'odontologia': '/IMG_RENE/odontologia.png',
-        'urologia': '/IMG_RENE/urologia.jpg',
-        'nutricion': '/IMG_RENE/nutricion.jpg',
+        'medicina general': 'medGeneral.jpg',
+        'dermatologia': 'dermatologia.jpg',
+        'odontologia': 'odontologia.png',
+        'urologia': 'urologia.jpg',
+        'nutricion': 'nutricion.jpg',
         'cardiologia': 'https://placehold.co/150x100/0284c7/white?text=Cardio' 
     };
     return map[nombre] || `https://placehold.co/150x100/0284c7/white?text=${nombre.charAt(0).toUpperCase()}`;
