@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicina General - Clínica Rene</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="allEspeciRene.css"> 
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <div class="logo-image">
+                        <img src="/IMG_RENE/logoRene.png" alt="Logo Clínica Rene">
+                    </div>
+                    <div class="logo-text">
+                        <a href="/inicioRene.html">Clinica Rene</a> 
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/especialidadRene.html">Especialidades</a></li>
+                    <li><a href="/serviciosRene.html">Servicios</a></li>
+                    <li><a href="/promocionRene.html">Promociones</a></li>
+                    <li><a href="/DOCTORES/doctorRene.html">Doctores</a></li>
+                    <li><a href="/nosotrosRene.html">Nosotros</a></li>
+                    <li><a id="sesion-link" href="/loginRene.html">Iniciar Sesion</a></li> 
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Atención de Medicina General de Excelencia</h1>
+                        <p>Especialistas en salud general con tecnología de última generación y un enfoque integral en
+                            tu bienestar.</p>
+
+                        <div class="cta-buttons">
+                            <a href="/sistemaRene.html" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Agendar Cita</a> 
+                            <a href="#servicios" class="btn btn-secondary"><i class="fas fa-info-circle"></i> Conocer
+                                Más</a>
+                        </div>
+
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">X+</span>
+                                <span class="stat-label">Años de Experiencia</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">XXXX+</span>
+                                <span class="stat-label">Pacientes Atendidos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">XX%</span>
+                                <span class="stat-label">Satisfacción</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="hero-image-circle"><i class="fas fa-user-md"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-microscope"></i></span>
+                        <h3>Diagnóstico Preciso</h3>
+                        <p>Tecnología avanzada para diagnósticos exactos y tratamientos efectivos.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-user-md"></i></span>
+                        <h3>Especialistas Certificados</h3>
+                        <p>Equipo médico altamente capacitado con experiencia internacional.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-heartbeat"></i></span>
+                        <h3>Atención Integral</h3>
+                        <p>Seguimiento completo desde el diagnóstico hasta la recuperación.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-procedures"></i></span>
+                        <h3>Tratamientos Innovadores</h3>
+                        <p>Procedimientos mínimamente invasivos con recuperación rápida.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Información Médica</h2>
+                    <p>Conoce más sobre las condiciones de medicina general más comunes y cómo podemos ayudarte</p>
+                </div>
+
+                <div class="tabs-container">
+                    <button class="tab-btn active" data-tab="enfermedades">Enfermedades</button>
+                    <button class="tab-btn" data-tab="sintomas">Síntomas</button>
+                    <button class="tab-btn" data-tab="tratamientos">Tratamientos</button>
+                    <button class="tab-btn" data-tab="prevencion">Prevención</button>
+                </div>
+
+                <div class="tab-content active" id="enfermedades">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-head-side-cough"></i></span>
+                            <div class="info-item-content">
+                                <h5>Resfriado y Gripe</h5>
+                                <p>Manejo de síntomas de infecciones respiratorias comunes, como tos, fiebre y malestar
+                                    general.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-tachometer-alt"></i></span>
+                            <div class="info-item-content">
+                                <h5>Hipertensión Arterial</h5>
+                                <p>Control y seguimiento de la presión arterial alta para prevenir complicaciones
+                                    cardiovasculares.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-cookie-bite"></i></span>
+                            <div class="info-item-content">
+                                <h5>Diabetes Mellitus</h5>
+                                <p>Diagnóstico y manejo de la diabetes tipo 2, incluyendo control de glucosa y planes de
+                                    estilo de vida.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-clipboard-check"></i></span>
+                            <div class="info-item-content">
+                                <h5>Chequeos Preventivos</h5>
+                                <p>Exámenes de salud regulares para la detección temprana de enfermedades y promoción de
+                                    la salud.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-stomach"></i></span>
+                            <div class="info-item-content">
+                                <h5>Problemas Digestivos</h5>
+                                <p>Evaluación de gastritis, síndrome de intestino irritable y otros malestares
+                                    digestivos comunes.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-allergies"></i></span>
+                            <div class="info-item-content">
+                                <h5>Afecciones de la Piel</h5>
+                                <p>Tratamiento de dermatitis, acné, alergias cutáneas y otras condiciones
+                                    dermatológicas básicas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="sintomas">
+                    <div class="content-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-thermometer-half"></i> Fiebre y Malestar</h4>
+                            <p>Indicador común de infecciones o procesos inflamatorios en el cuerpo.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-head-side-cough"></i> Tos Persistente</h4>
+                            <p>Puede indicar desde un resfriado común hasta afecciones pulmonares crónicas.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-tired"></i> Fatiga Crónica</h4>
+                            <p>Sensación de cansancio constante que requiere evaluación médica.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-head-side-virus"></i> Dolor de Cabeza</h4>
+                            <p>Evaluación de migrañas, cefaleas tensionales y otras causas.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-stomach"></i> Dolor Abdominal</h4>
+                            <p>Síntoma general que puede estar relacionado con múltiples sistemas.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-weight"></i> Cambios de Peso</h4>
+                            <p>Pérdida o ganancia de peso inexplicada que debe ser estudiada.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tratamientos">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-pills"></i></span>
+                            <div class="info-item-content">
+                                <h5>Tratamiento Médico</h5>
+                                <p>Recetas y manejo de medicamentos para condiciones agudas y crónicas.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-cut"></i></span>
+                            <div class="info-item-content">
+                                <h5>Cirugía Menor</h5>
+                                <p>Procedimientos ambulatorios como suturas o drenajes menores.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-prescription-bottle-alt"></i></span>
+                            <div class="info-item-content">
+                                <h5>Manejo de Crónicos</h5>
+                                <p>Planes de tratamiento a largo plazo para hipertensión, diabetes, etc.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-dumbbell"></i></span>
+                            <div class="info-item-content">
+                                <h5>Terapia Física</h5>
+                                <p>Referencia para rehabilitación física y manejo del dolor muscular.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-syringe"></i></span>
+                            <div class="info-item-content">
+                                <h5>Vacunación</h5>
+                                <p>Administración de vacunas para la prevención de enfermedades infecciosas.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-brain"></i></span>
+                            <div class="info-item-content">
+                                <h5>Asesoramiento en Salud Mental</h5>
+                                <p>Apoyo en manejo de estrés y ansiedad como parte de la atención integral.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="prevencion">
+                    <div class="content-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-tint"></i> Hidratación Adecuada</h4>
+                            <p>Beber 2-3 litros de agua diarios para mantener la salud general.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-apple-alt"></i> Dieta Balanceada</h4>
+                            <p>Consumir frutas, verduras y granos enteros para un sistema inmune fuerte.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-running"></i> Ejercicio Regular</h4>
+                            <p>Actividad física para mantener un peso saludable y salud cardiovascular.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-smoking-ban"></i> Evitar Tabaco</h4>
+                            <p>El tabaquismo aumenta el riesgo de múltiples enfermedades crónicas.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-calendar-check"></i> Chequeos Regulares</h4>
+                            <p>Exámenes anuales para detección temprana de problemas.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-hand-holding-water"></i> Higiene Adecuada</h4>
+                            <p>Prácticas de higiene como el lavado de manos para prevenir infecciones.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="equipment-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Tecnología de Vanguardia</h2>
+                    <p>Contamos con equipamiento de última generación para diagnósticos precisos y tratamientos
+                        efectivos</p>
+                </div>
+
+                <div class="equipment-grid">
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-microscope"></i></span>
+                        <h3>Ultrasonido Doppler</h3>
+                        <p>Tecnología avanzada para evaluación de flujo sanguíneo y detección de anomalías vasculares.
+                        </p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-cube"></i></span>
+                        <h3>Resonancia Magnética 3T</h3>
+                        <p>Imágenes de alta resolución para diagnóstico preciso de tumores y anomalías estructurales.
+                        </p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-heartbeat"></i></span>
+                        <h3>Electrocardiograma (ECG)</h3>
+                        <p>Equipo para monitorear la actividad eléctrica del corazón y detectar arritmias.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-x-ray"></i></span>
+                        <h3>Rayos X Digital</h3>
+                        <p>Imágenes diagnósticas rápidas y de alta definición para evaluar huesos y pulmones.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-vial"></i></span>
+                        <h3>Laboratorio Clínico</h3>
+                        <p>Análisis de sangre, orina y otros fluidos para diagnósticos precisos.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-laptop-medical"></i></span>
+                        <h3>Monitoreo Ambulatorio (MAPA)</h3>
+                        <p>Monitoreo de la presión arterial durante 24 horas para un diagnóstico exacto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>¿Necesitas atención de medicina general?</h2>
+                    <p>No esperes más para cuidar de tu salud. Agenda tu cita con nuestros especialistas y recibe la
+                        mejor atención médica.</p>
+                    <a href="/sistemaRene.html" class="btn btn-primary"><i class="fas fa-calendar-plus"></i> Agendar Cita Ahora</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Clínica Rene</h3>
+                    <p class="footer-tagline">Si no sana hoy, sanará mañana</p>
+                    <p>Un paso más cerca de sentirte mejor</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="/especialidadRene.html">Especialidades</a></li>
+                        <li><a href="/DOCTORES/doctorRene.html">Nuestros Doctores</a></li>
+                        <li><a href="/serviciosRene.html">Servicios</a></li>
+                        <li><a href="/nosotrosRene.html">Sobre Nosotros</a></li>
+                        <li><a href="/promocionRene.html">Promociones</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Servicios Generales</h3>
+                    <ul>
+                        <li><a href="#">Consulta General</a></li>
+                        <li><a href="#">Chequeo Preventivo</a></li>
+                        <li><a href="#">Manejo de Crónicos</a></li>
+                        <li><a href="#">Atención Pediátrica</a></li>
+                        <li><a href="#">Certificados Médicos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                            <span>Av. Lima Sur 123, Lima</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+                            <a href="tel:+5114218900">(01) 234-5678</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-mobile-alt"></i></span>
+                            <a href="#">+51 987 654 321</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                            <a href="mailto:info@clinicarene.com">info@clinicarene.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-clock"></i></span>
+                            <span>Lun - Dom: 24 Horas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Clinica Rene. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Libro de Reclamaciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="allEspeciRene.js"></script>
+    <script src="/commonRene.js"></script>
+</body>
+
+</html>

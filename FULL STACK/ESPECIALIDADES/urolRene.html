@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urología - Clínica Rene</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="allEspeciRene.css">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <div class="logo-image">
+                        <img src="/IMG_RENE/logoRene.png" alt="Logo Clínica Rene">
+                    </div>
+                    <div class="logo-text">
+                        <a href="#">Clinica Rene</a>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/FULL STACK/especialidadRene.html">Especialidades</a></li>
+                    <li><a href="/FULL STACK/serviciosRene.html">Servicios</a></li>
+                    <li><a href="/FULL STACK/promocionRene.html">Promociones</a></li>
+                    <li><a href="/FULL STACK/DOCTORES/">Doctores</a></li>
+                    <li><a href="/FULL STACK/nosotrosRene.html">Nosotros</a></li>
+                    <li><a href="/FULL STACK/loginRene.html">Iniciar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Atención Urológica de Excelencia</h1>
+                        <p>Especialistas en salud urológica con tecnología de última generación y un enfoque integral en
+                            tu bienestar.</p>
+
+                        <div class="cta-buttons">
+                            <a href="#" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Agendar Cita</a>
+                            <a href="#servicios" class="btn btn-secondary"><i class="fas fa-info-circle"></i> Conocer
+                                Más</a>
+                        </div>
+
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">X+</span>
+                                <span class="stat-label">Años de Experiencia</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">XXXX+</span>
+                                <span class="stat-label">Pacientes Atendidos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">XX%</span>
+                                <span class="stat-label">Satisfacción</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="hero-image-circle"><i class="fas fa-stethoscope"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-microscope"></i></span>
+                        <h3>Diagnóstico Preciso</h3>
+                        <p>Tecnología avanzada para diagnósticos exactos y tratamientos efectivos.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-user-md"></i></span>
+                        <h3>Especialistas Certificados</h3>
+                        <p>Equipo médico altamente capacitado con experiencia internacional.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-heartbeat"></i></span>
+                        <h3>Atención Integral</h3>
+                        <p>Seguimiento completo desde el diagnóstico hasta la recuperación.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-procedures"></i></span>
+                        <h3>Tratamientos Innovadores</h3>
+                        <p>Procedimientos mínimamente invasivos con recuperación rápida.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Información Médica</h2>
+                    <p>Conoce más sobre las condiciones urológicas más comunes y cómo podemos ayudarte</p>
+                </div>
+
+                <div class="tabs-container">
+                    <button class="tab-btn active" data-tab="enfermedades">Enfermedades</button>
+                    <button class="tab-btn" data-tab="sintomas">Síntomas</button>
+                    <button class="tab-btn" data-tab="tratamientos">Tratamientos</button>
+                    <button class="tab-btn" data-tab="prevencion">Prevención</button>
+                </div>
+
+                <div class="tab-content active" id="enfermedades">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-bacteria"></i></span>
+                            <div class="info-item-content">
+                                <h5>Infección Urinaria</h5>
+                                <p>Infección bacteriana del tracto urinario que puede afectar vejiga, uretra o riñones.
+                                    Tratamiento con antibióticos específicos.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-gem"></i></span>
+                            <div class="info-item-content">
+                                <h5>Cálculos Renales</h5>
+                                <p>Formación de piedras en los riñones por cristalización de minerales. Tratamiento
+                                    desde medicamentos hasta litotricia.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-prostate"></i></span>
+                            <div class="info-item-content">
+                                <h5>Hiperplasia Prostática</h5>
+                                <p>Crecimiento benigno de la próstata común en hombres mayores de 50 años. Múltiples
+                                    opciones de tratamiento disponibles.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-ribbon"></i></span>
+                            <div class="info-item-content">
+                                <h5>Cáncer de Próstata</h5>
+                                <p>Tumor maligno en la glándula prostática. Detección temprana crucial para mejor
+                                    pronóstico.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-pills"></i></span>
+                            <div class="info-item-content">
+                                <h5>Disfunción Eréctil</h5>
+                                <p>Dificultad para lograr o mantener una erección. Tratamientos médicos y terapéuticos
+                                    disponibles.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-tint"></i></span>
+                            <div class="info-item-content">
+                                <h5>Incontinencia Urinaria</h5>
+                                <p>Pérdida involuntaria de orina. Soluciones desde ejercicios hasta procedimientos
+                                    quirúrgicos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="sintomas">
+                    <div class="content-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-fire"></i> Dolor al Orinar</h4>
+                            <p>Sensación de ardor o dolor durante la micción, puede indicar infección.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-clock"></i> Urgencia Frecuente</h4>
+                            <p>Necesidad constante de orinar, incluso con vejiga vacía.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-tint"></i> Sangre en Orina</h4>
+                            <p>Hematuria que requiere evaluación médica inmediata.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-pain"></i> Dolor Lumbar</h4>
+                            <p>Dolor en la zona baja de la espalda, posible problema renal.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-ban"></i> Dificultad para Orinar</h4>
+                            <p>Flujo débil o interrumpido, común en problemas prostáticos.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-moon"></i> Nocturia</h4>
+                            <p>Necesidad de levantarse varias veces en la noche para orinar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tratamientos">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-pills"></i></span>
+                            <div class="info-item-content">
+                                <h5>Tratamiento Médico</h5>
+                                <p>Medicamentos específicos según diagnóstico, desde antibióticos hasta terapia
+                                    hormonal.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-syringe"></i></span>
+                            <div class="info-item-content">
+                                <h5>Cirugía Mínimamente Invasiva</h5>
+                                <p>Procedimientos laparoscópicos y robóticos para menor tiempo de recuperación.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-bolt"></i></span>
+                            <div class="info-item-content">
+                                <h5>Litotricia</h5>
+                                <p>Tratamiento con ondas de choque para romper cálculos renales sin cirugía.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-dumbbell"></i></span>
+                            <div class="info-item-content">
+                                <h5>Terapia Física</h5>
+                                <p>Ejercicios de suelo pélvico para mejorar la incontinencia urinaria.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-radiation"></i></span>
+                            <div class="info-item-content">
+                                <h5>Radioterapia</h5>
+                                <p>Tratamiento localizado para cáncer urológico con tecnología de precisión.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-brain"></i></span>
+                            <div class="info-item-content">
+                                <h5>Asesoramiento Psicológico</h5>
+                                <p>Apoyo emocional y terapéutico para condiciones que afectan la vida sexual.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="prevencion">
+                    <div class="content-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-tint"></i> Hidratación Adecuada</h4>
+                            <p>Beber 2-3 litros de agua diarios para prevenir infecciones y cálculos.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-apple-alt"></i> Dieta Balanceada</h4>
+                            <p>Reducir sal y proteínas animales para prevenir cálculos renales.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-running"></i> Ejercicio Regular</h4>
+                            <p>Actividad física para mantener salud prostática y urinaria.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-smoking-ban"></i> Evitar Tabaco</h4>
+                            <p>El tabaquismo aumenta el riesgo de cáncer urológico.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-calendar-check"></i> Chequeos Regulares</h4>
+                            <p>Exámenes anuales para detección temprana de problemas.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-hand-holding-water"></i> Higiene Adecuada</h4>
+                            <p>Prácticas de higiene para prevenir infecciones urinarias.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="equipment-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Tecnología de Vanguardia</h2>
+                    <p>Contamos con equipamiento de última generación para diagnósticos precisos y tratamientos
+                        efectivos</p>
+                </div>
+
+                <div class="equipment-grid">
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-microscope"></i></span>
+                        <h3>Ultrasonido Doppler</h3>
+                        <p>Tecnología avanzada para evaluación de flujo sanguíneo y detección de anomalías vasculares.
+                        </p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-cube"></i></span>
+                        <h3>Resonancia Magnética 3T</h3>
+                        <p>Imágenes de alta resolución para diagnóstico preciso de tumores y anomalías estructurales.
+                        </p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-robot"></i></span>
+                        <h3>Cirugía Robótica Da Vinci</h3>
+                        <p>Procedimientos mínimamente invasivos con mayor precisión y recuperación acelerada.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-bolt"></i></span>
+                        <h3>Litotriptor Extracorpóreo</h3>
+                        <p>Equipo de ondas de choque para tratamiento no invasivo de cálculos renales.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-vial"></i></span>
+                        <h3>Laboratorio de Urodinámica</h3>
+                        <p>Evaluación completa de la función vesical y uretral para diagnósticos precisos.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-laptop-medical"></i></span>
+                        <h3>Sistema de Videourodinámica</h3>
+                        <p>Monitoreo en tiempo real de la función del tracto urinario inferior.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>¿Necesitas atención urológica?</h2>
+                    <p>No esperes más para cuidar de tu salud. Agenda tu cita con nuestros especialistas y recibe la
+                        mejor atención médica.</p>
+                    <a href="#" class="btn btn-primary"><i class="fas fa-calendar-plus"></i> Agendar Cita Ahora</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Clínica Rene</h3>
+                    <p class="footer-tagline">Si no sana hoy, sanará mañana</p>
+                    <p>Un paso más cerca de sentirte mejor</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="especialidades.html">Especialidades</a></li>
+                        <li><a href="doctores.html">Nuestros Doctores</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Servicios Urológicos</h3>
+                    <ul>
+                        <li><a href="#">Consulta Urológica</a></li>
+                        <li><a href="#">Cirugía Urológica</a></li>
+                        <li><a href="#">Urodinámica</a></li>
+                        <li><a href="#">Andrología</a></li>
+                        <li><a href="#">Uro-Oncología</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                            <span>Av. Lima Sur 123, Lima</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+                            <a href="tel:+5114218900">(01) 234-5678</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-mobile-alt"></i></span>
+                            <a href="#">+51 987 654 321</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                            <a href="mailto:info@clinicarene.com">info@clinicarene.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-clock"></i></span>
+                            <span>Lun - Dom: 24 Horas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Clinica Rene. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Libro de Reclamaciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="allEspeciRene.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odontología - Clínica Rene</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="allEspeciRene.css">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <div class="logo-image">
+                        <img src="/IMG_RENE/logoRene.png" alt="Logo Clínica Rene">
+                    </div>
+                    <div class="logo-text">
+                        <a href="#">Clinica Rene</a>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/FULL STACK/especialidadRene.html">Especialidades</a></li>
+                    <li><a href="/FULL STACK/serviciosRene.html">Servicios</a></li>
+                    <li><a href="/FULL STACK/promocionRene.html">Promociones</a></li>
+                    <li><a href="/FULL STACK/DOCTORES/">Doctores</a></li>
+                    <li><a href="/FULL STACK/nosotrosRene.html">Nosotros</a></li>
+                    <li><a href="/FULL STACK/loginRene.html">Iniciar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Atención Odontológica de Excelencia</h1>
+                        <p>Especialistas en salud bucodental con tecnología de última generación y un enfoque integral
+                            en
+                            tu sonrisa.</p>
+
+                        <div class="cta-buttons">
+                            <a href="#" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Agendar Cita</a>
+                            <a href="#servicios" class="btn btn-secondary"><i class="fas fa-info-circle"></i> Conocer
+                                Más</a>
+                        </div>
+
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">X+</span>
+                                <span class="stat-label">Años de Experiencia</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">XXXX+</span>
+                                <span class="stat-label">Pacientes Atendidos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">XX%</span>
+                                <span class="stat-label">Satisfacción</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="hero-image-circle"><i class="fas fa-tooth"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-x-ray"></i></span>
+                        <h3>Diagnóstico Preciso</h3>
+                        <p>Tecnología avanzada para diagnósticos exactos y tratamientos efectivos.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-user-md"></i></span>
+                        <h3>Especialistas Certificados</h3>
+                        <p>Equipo médico altamente capacitado con experiencia internacional.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-smile-beam"></i></span>
+                        <h3>Atención Integral</h3>
+                        <p>Seguimiento completo desde el diagnóstico hasta la recuperación.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-magic"></i></span>
+                        <h3>Tratamientos Indoloros</h3>
+                        <p>Procedimientos mínimamente invasivos con recuperación rápida.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Información Médica</h2>
+                    <p>Conoce más sobre las condiciones odontológicas más comunes y cómo podemos ayudarte</p>
+                </div>
+
+                <div class="tabs-container">
+                    <button class="tab-btn active" data-tab="enfermedades">Enfermedades</button>
+                    <button class="tab-btn" data-tab="sintomas">Síntomas</button>
+                    <button class="tab-btn" data-tab="tratamientos">Tratamientos</button>
+                    <button class="tab-btn" data-tab="prevencion">Prevención</button>
+                </div>
+
+                <div class="tab-content active" id="enfermedades">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-bacterium"></i></span>
+                            <div class="info-item-content">
+                                <h5>Caries Dental</h5>
+                                <p>Daño en el esmalte del diente causado por bacterias. Se trata comúnmente con
+                                    empastes (curaciones).</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-exclamation-triangle"></i></span>
+                            <div class="info-item-content">
+                                <h5>Gingivitis y Periodontitis</h5>
+                                <p>Inflamación de encías (gingivitis) que puede avanzar y dañar el hueso que sostiene el
+                                    diente (periodontitis).</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-teeth-open"></i></span>
+                            <div class="info-item-content">
+                                <h5>Bruxismo</h5>
+                                <p>Hábito de apretar o rechinar los dientes, usualmente de noche. Se maneja con férulas
+                                    de descarga.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-ribbon"></i></span>
+                            <div class="info-item-content">
+                                <h5>Cáncer Oral</h5>
+                                <p>Detección temprana de lesiones malignas en la boca, lengua o labios es crucial para
+                                    un mejor pronóstico.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-align-justify"></i></span>
+                            <div class="info-item-content">
+                                <h5>Maloclusión</h5>
+                                <p>Mala alineación de los dientes o de la mordida. Se corrige con tratamientos de
+                                    ortodoncia.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-wind"></i></span>
+                            <div class="info-item-content">
+                                <h5>Halitosis (Mal aliento)</h5>
+                                <p>Pérdida involuntaria de orina. Soluciones desde ejercicios hasta procedimientos
+                                    quirúrgicos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="sintomas">
+                    <div class="content-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-exclamation"></i> Dolor de Muelas</h4>
+                            <p>Dolor agudo o punzante en un diente, usualmente por caries o infección.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-tint"></i> Sangrado de Encías</h4>
+                            <p>Signo clásico de inflamación (gingivitis), especialmente al cepillarse.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-thermometer-half"></i> Sensibilidad Dental</h4>
+                            <p>Molestia al consumir alimentos fríos, calientes o dulces.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-wind"></i> Mal Aliento Persistente</h4>
+                            <p>Halitosis que no desaparece, puede indicar infección o sarro.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-arrows-alt-v"></i> Movilidad Dental</h4>
+                            <p>Dientes que se sienten flojos, signo de enfermedad periodontal avanzada.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-frown"></i> Dolor Mandibular</h4>
+                            <p>Molestia al masticar o abrir la boca, asociado a bruxismo o ATM.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tratamientos">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-fill-drip"></i></span>
+                            <div class="info-item-content">
+                                <h5>Empastes (Curaciones)</h5>
+                                <p>Restauración de dientes dañados por caries para devolverles su forma y función.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-seedling"></i></span>
+                            <div class="info-item-content">
+                                <h5>Endodoncia (Tto. de Canal)</h5>
+                                <p>Eliminación del nervio infectado dentro del diente para salvar la pieza.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-shower"></i></span>
+                            <div class="info-item-content">
+                                <h5>Profilaxis (Limpieza)</h5>
+                                <p>Limpieza dental profesional para remover placa y sarro acumulado.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-align-center"></i></span>
+                            <div class="info-item-content">
+                                <h5>Ortodoncia (Brackets)</h5>
+                                <p>Corrección de la alineación dental y la mordida con brackets o alineadores.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-tooth"></i></span>
+                            <div class="info-item-content">
+                                <h5>Implantes Dentales</h5>
+                                <p>Sustitución de dientes perdidos mediante raíces artificiales de titanio.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-smile-beam"></i></span>
+                            <div class="info-item-content">
+                                <h5>Blanqueamiento Dental</h5>
+                                <p>Tratamiento estético para aclarar el tono de los dientes y mejorar la sonrisa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="prevencion">
+                    <div class="content-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-toothbrush"></i> Buen Cepillado</h4>
+                            <p>Cepillar los dientes 3 veces al día y usar hilo dental diariamente.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-apple-alt"></i> Dieta Balanceada</h4>
+                            <p>Reducir el consumo de azúcares y bebidas ácidas para prevenir caries.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-tint"></i> Hidratación</h4>
+                            <p>Beber agua ayuda a mantener la boca limpia y a producir saliva protectora.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-smoking-ban"></i> Evitar Tabaco</h4>
+                            <p>El tabaquismo aumenta el riesgo de cáncer oral y enfermedad periodontal.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-calendar-check"></i> Chequeos Regulares</h4>
+                            <p>Visitar al dentista cada 6 meses para revisiones y limpiezas preventivas.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-shield-alt"></i> Usar Flúor</h4>
+                            <p>Utilizar pastas dentales y enjuagues con flúor para fortalecer el esmalte.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="equipment-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Tecnología de Vanguardia</h2>
+                    <p>Contamos con equipamiento de última generación para diagnósticos precisos y tratamientos
+                        efectivos</p>
+                </div>
+
+                <div class="equipment-grid">
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-x-ray"></i></span>
+                        <h3>Radiografía Panorámica Digital</h3>
+                        <p>Imágenes completas de alta definición de todos los dientes y maxilares con mínima radiación.
+                        </p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-camera"></i></span>
+                        <h3>Cámara Intraoral</h3>
+                        <p>Permite al paciente ver en tiempo real el estado de sus dientes en alta magnificación.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-laptop-medical"></i></span>
+                        <h3>Diseño de Sonrisa Digital (DSD)</h3>
+                        <p>Software avanzado para planificar y previsualizar tratamientos estéticos.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-lightbulb"></i></span>
+                        <h3>Láser Dental</h3>
+                        <p>Tratamientos de encías, blanqueamiento y cirugía menor sin dolor y con rápida recuperación.
+                        </p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-cube"></i></span>
+                        <h3>Escáner Intraoral 3D</h3>
+                        <p>Toma de impresiones digitales precisas y cómodas, eliminando el uso de pastas.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-chair"></i></span>
+                        <h3>Unidad Dental Ergonómica</h3>
+                        <p>Sillones de última generación para máximo confort del paciente durante el tratamiento.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>¿Necesitas atención odontológica?</h2>
+                    <p>No esperes más para cuidar de tu salud bucal. Agenda tu cita con nuestros especialistas y luce la
+                        mejor sonrisa.</p>
+                    <a href="#" class="btn btn-primary"><i class="fas fa-calendar-plus"></i> Agendar Cita Ahora</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Clínica Rene</h3>
+                    <p class="footer-tagline">Si no sana hoy, sanará mañana</p>
+                    <p>Un paso más cerca de sentirte mejor</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="especialidades.html">Especialidades</a></li>
+                        <li><a href="doctores.html">Nuestros Doctores</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Servicios Odontológicos</h3>
+                    <ul>
+                        <li><a href="#">Consulta y Diagnóstico</a></li>
+                        <li><a href="#">Endodoncia</a></li>
+                        <li><a href="#">Ortodoncia</a></li>
+                        <li><a href="#">Implantes Dentales</a></li>
+                        <li><a href="#">Estética Dental</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                            <span>Av. Lima Sur 123, Lima</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+                            <a href="tel:+5114218900">(01) 234-5678</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-mobile-alt"></i></span>
+                            <a href="#">+51 987 654 321</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                            <a href="mailto:info@clinicarene.com">info@clinicarene.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-clock"></i></span>
+                            <span>Lun - Dom: 24 Horas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Clinica Rene. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Libro de Reclamaciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="allEspeciRene.js"></script>
+</body>
+
+</html>

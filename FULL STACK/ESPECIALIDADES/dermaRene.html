@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dermatología - Clínica Rene</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="allEspeciRene.css">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <div class="logo-image">
+                        <img src="/IMG_RENE/logoRene.png" alt="Logo Clínica Rene">
+                    </div>
+                    <div class="logo-text">
+                        <a href="#">Clinica Rene</a>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/FULL STACK/especialidadRene.html">Especialidades</a></li>
+                    <li><a href="/FULL STACK/serviciosRene.html">Servicios</a></li>
+                    <li><a href="/FULL STACK/promocionRene.html">Promociones</a></li>
+                    <li><a href="/FULL STACK/DOCTORES/">Doctores</a></li>
+                    <li><a href="/FULL STACK/nosotrosRene.html">Nosotros</a></li>
+                    <li><a href="/FULL STACK/loginRene.html">Iniciar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Atención Dermatológica de Excelencia</h1>
+                        <p>Especialistas en salud de la piel con tecnología de última generación y un enfoque integral
+                            en
+                            tu bienestar.</p>
+
+                        <div class="cta-buttons">
+                            <a href="#" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Agendar Cita</a>
+                            <a href="#servicios" class="btn btn-secondary"><i class="fas fa-info-circle"></i> Conocer
+                                Más</a>
+                        </div>
+
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">X+</span>
+                                <span class="stat-label">Años de Experiencia</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">XXXX+</span>
+                                <span class="stat-label">Pacientes Atendidos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">XX%</span>
+                                <span class="stat-label">Satisfacción</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="hero-image-circle"><i class="fas fa-spa"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-microscope"></i></span>
+                        <h3>Diagnóstico Preciso</h3>
+                        <p>Dermatoscopía digital para el mapeo y análisis avanzado de lunares.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-user-md"></i></span>
+                        <h3>Especialistas Certificados</h3>
+                        <p>Dermatólogos con experiencia en dermatología clínica, estética y quirúrgica.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-heartbeat"></i></span>
+                        <h3>Atención Integral</h3>
+                        <p>Manejo de la salud de tu piel, cabello y uñas con un enfoque completo.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-magic"></i></span>
+                        <h3>Tratamientos Estéticos</h3>
+                        <p>Procedimientos láser, peelings y rellenos para el rejuvenecimiento facial.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Información Médica</h2>
+                    <p>Conoce más sobre las condiciones dermatológicas más comunes y cómo podemos ayudarte</p>
+                </div>
+
+                <div class="tabs-container">
+                    <button class="tab-btn active" data-tab="enfermedades">Condiciones</button>
+                    <button class="tab-btn" data-tab="sintomas">Síntomas</button>
+                    <button class="tab-btn" data-tab="tratamientos">Tratamientos</button>
+                    <button class="tab-btn" data-tab="prevencion">Prevención</button>
+                </div>
+
+                <div class="tab-content active" id="enfermedades">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-head-side-mask"></i></span>
+                            <div class="info-item-content">
+                                <h5>Acné</h5>
+                                <p>Tratamiento de espinillas, pápulas y quistes para prevenir cicatrices. Soluciones
+                                    para
+                                    adolescentes y adultos.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-allergies"></i></span>
+                            <div class="info-item-content">
+                                <h5>Dermatitis y Eczema</h5>
+                                <p>Manejo de la inflamación, picazón y enrojecimiento de la piel causados por alergias o
+                                    irritantes.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-layer-group"></i></span>
+                            <div class="info-item-content">
+                                <h5>Psoriasis</h5>
+                                <p>Tratamiento para controlar las placas escamosas y la inflamación crónica de esta
+                                    enfermedad autoinmune.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-ribbon"></i></span>
+                            <div class="info-item-content">
+                                <h5>Cáncer de Piel</h5>
+                                <p>Detección temprana y tratamiento de melanoma, carcinoma basocelular y espinocelular.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-bacterium"></i></span>
+                            <div class="info-item-content">
+                                <h5>Infecciones Cutáneas</h5>
+                                <p>Tratamiento de hongos (micosis), bacterias (impétigo) y virus (verrugas) que afectan
+                                    la piel.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-flushed"></i></span>
+                            <div class="info-item-content">
+                                <h5>Rosácea</h5>
+                                <p>Control del enrojecimiento facial, vasos sanguíneos visibles y brotes inflamatorios.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="sintomas">
+                    <div class="content-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-fire"></i> Enrojecimiento (Eritema)</h4>
+                            <p>Inflamación visible de la piel, puede ser por rosácea, alergia o quemadura solar.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-hand-sparkles"></i> Picazón (Prurito)</h4>
+                            <p>Sensación irritante que provoca el deseo de rascarse, común en dermatitis y urticaria.
+                            </p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-star-of-life"></i> Manchas o Lunares</h4>
+                            <p>Aparición de nuevas manchas o cambios en lunares existentes (forma, color, tamaño).</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-wind"></i> Piel Seca o Escamosa</h4>
+                            <p>Piel áspera y agrietada (xerosis) o descamación visible (psoriasis).</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-dot-circle"></i> Pústulas y Espinillas</h4>
+                            <p>Lesiones inflamatorias llenas de pus, características del acné.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-braille"></i> Caída de Cabello</h4>
+                            <p>Pérdida excesiva de cabello (alopecia) que requiere diagnóstico tricólogico.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tratamientos">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-prescription-bottle-alt"></i></span>
+                            <div class="info-item-content">
+                                <h5>Tratamiento Tópico</h5>
+                                <p>Uso de cremas, geles y lociones medicadas para tratar afecciones directamente en la
+                                    piel.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-radiation"></i></span>
+                            <div class="info-item-content">
+                                <h5>Láserterapia</h5>
+                                <p>Tratamientos con láser (CO2, IPL) para cicatrices, manchas, rosácea y depilación.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-snowflake"></i></span>
+                            <div class="info-item-content">
+                                <h5>Crioterapia</h5>
+                                <p>Tratamiento con nitrógeno líquido para eliminar verrugas y lesiones benignas.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-cut"></i></span>
+                            <div class="info-item-content">
+                                <h5>Cirugía Dermatológica</h5>
+                                <p>Extirpación de lunares, quistes y cáncer de piel mediante cirugía menor.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-vial"></i></span>
+                            <div class="info-item-content">
+                                <h5>Peelings Químicos</h5>
+                                <p>Aplicación de ácidos para exfoliar la piel, tratar manchas y mejorar la textura.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-syringe"></i></span>
+                            <div class="info-item-content">
+                                <h5>Rellenos y Toxina Botulínica</h5>
+                                <p>Tratamientos estéticos para arrugas (Botox) y pérdida de volumen (Ácido
+                                    Hialurónico).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="prevencion">
+                    <div class="content-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-sun"></i> Protección Solar Diaria</h4>
+                            <p>Usar protector solar (FPS 30+) todos los días para prevenir cáncer y envejecimiento.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-tint"></i> Hidratación Adecuada</h4>
+                            <p>Usar cremas hidratantes específicas para tu tipo de piel para mantener la barrera
+                                cutánea.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-apple-alt"></i> Dieta Saludable</h4>
+                            <p>Una dieta rica en antioxidantes (frutas, verduras) beneficia la salud de la piel.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-search"></i> Autoexamen de Piel</h4>
+                            <p>Revisar tus lunares mensualmente para detectar cambios (ABCDE del melanoma).</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-calendar-check"></i> Chequeos Anuales</h4>
+                            <p>Visita al dermatólogo una vez al año para un chequeo completo de lunares.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-hand-holding-water"></i> Higiene Suave</h4>
+                            <p>Evitar jabones agresivos y agua muy caliente que resequen la piel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="equipment-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Tecnología de Vanguardia</h2>
+                    <p>Contamos con equipamiento de última generación para diagnósticos precisos y tratamientos
+                        efectivos</p>
+                </div>
+
+                <div class="equipment-grid">
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-microscope"></i></span>
+                        <h3>Dermatoscopio Digital</h3>
+                        <p>Análisis de alta magnificación y mapeo computarizado de lunares para detección precoz de
+                            cáncer.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-radiation"></i></span>
+                        <h3>Láser CO2 Fraccionado</h3>
+                        <p>Tecnología avanzada para el tratamiento de cicatrices de acné, arrugas y rejuvenecimiento.
+                        </p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-lightbulb"></i></span>
+                        <h3>Luz Pulsada Intensa (IPL)</h3>
+                        <p>Equipo para tratar manchas solares, rosácea, venas faciales y realizar fotodepilación.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-sun"></i></span>
+                        <h3>Fototerapia (Cabina UVB)</h3>
+                        <p>Tratamiento con luz ultravioleta controlada para psoriasis, vitíligo y dermatitis severa.
+                        </p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-snowflake"></i></span>
+                        <h3>Equipo de Crioterapia</h3>
+                        <p>Aplicador de nitrógeno líquido de alta precisión para eliminar lesiones cutáneas.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-laptop-medical"></i></span>
+                        <h3>Sistema de Mapeo Corporal</h3>
+                        <p>Monitoreo fotográfico de cuerpo completo para el seguimiento de pacientes de alto riesgo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>¿Necesitas atención dermatológica?</h2>
+                    <p>No esperes más para cuidar de tu piel. Agenda tu cita con nuestros especialistas y recibe la
+                        mejor atención médica.</p>
+                    <a href="#" class="btn btn-primary"><i class="fas fa-calendar-plus"></i> Agendar Cita Ahora</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Clínica Rene</h3>
+                    <p class="footer-tagline">Si no sana hoy, sanará mañana</p>
+                    <p>Un paso más cerca de sentirte mejor</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="especialidades.html">Especialidades</a></li>
+                        <li><a href="doctores.html">Nuestros Doctores</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Servicios Dermatológicos</h3>
+                    <ul>
+                        <li><a href="#">Consulta Dermatológica</a></li>
+                        <li><a href="#">Dermatología Estética</a></li>
+                        <li><a href="#">Cirugía Dermatológica</a></li>
+                        <li><a href="#">Tricología (Cabello)</a></li>
+                        <li><a href="#">Dermatoscopía Digital</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                            <span>Av. Lima Sur 123, Lima</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+                            <a href="tel:+5114218900">(01) 234-5678</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-mobile-alt"></i></span>
+                            <a href="#">+51 987 654 321</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                            <a href="mailto:info@clinicarene.com">info@clinicarene.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-clock"></i></span>
+                            <span>Lun - Dom: 24 Horas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Clinica Rene. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Libro de Reclamaciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="allEspeciRene.js"></script>
+</body>
+
+</html>

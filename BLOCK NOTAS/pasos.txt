@@ -1,0 +1,150 @@
+##PAGINA_WEB_BOTONES
+
+#ESPECIALIDADES (AL COSTADO DEL boton: mas informacion) agregar al costado (boton: Agendar Cita) Y AL DAR CLICK
+
+direccionar al SISTEMA_WEB_PACIENTE directamente en la seccion "CITAS" si esta logeado, "SI NO ESTA LOGEADO", que se registre o loguee.
+
+---------------------
+
+#SERVICIO
+
+Añadir el NAV y FOOTER y que mantenga el mismo JS y CSS, y a la vez siga siendo responsive
+Eliminar (toda la seccion atencion medica)  (JEAN LO VA HACER)
+
+---------------------
+
+#PROMOCIONES (NO SE MUEVE NADA NI SE IMPLEMENTA NADA)
+
+---------------------
+
+#DOCTORES //SI QUEIRES MANTENLO LOS DATOS DEL DOCTOR CUANDO EL PACIENTE DE CLICK A MAS INFORMACION O LLAMA A LA BASE DE DATOS
+
+Agregar un boton al costado de "CONOCE MAS" poner "AGENDAR CITA" y que direccione al sistema si est LOGUEADO y si no lo esta a REGISTRARSE O LOGUEARSE
+//GET (EL GET DEBE ESTAR EN EL PANEL QUE SE MUESTRA AL DAR CLICK EN EL BOTON DE MAS INFORMACION)
+
+nombreDoctor
+especialidad_C
+numeroDeDoctor (LICENCIA)
+(TITULO HTML "EXPERIENCIA:")
+experienciaDoctor
+(TITULO HTML "FORMACIONA")
+universidadDoctor
+(TITULO HTML "CERTIFICACIONES")
+certificacionesDoctor
+(TITULO HTML "IDIOMAS")
+idiomasDoctor
+(TITULO HTML "HORARIO ATENCION")
+horarioAtencionDoctor
+
+---------------------
+
+#NOSOTROS (NO SE IMPLEMENTARA NADA)
+
+---------------------
+
+#LOGIN Y REGISTRO
+
+//SET (FORMULARIO)
+nombrePaciente
+apellidosPaciente (DANDOLE ESPACIO SE ACOMODA EL APELLIDO PATERNO Y MATERNO)
+numeroDocumentoPaciente
+emailPaciente
+passPaciente
+
+//POST (LOGIN)
+numeroDocumentoPaciente
+passPaciente
+
+
+-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+
+##SISTEMA_WEB_PACIENTE
+
+#NMBRE_PACIOENTE, DNI
+//GET (DEBE MOSTRAR SU NOMBRE Y N DNI O DOCUMENTO EN EL PANEL)
+nombrePaciente
+nDocumentoPaciente
+
+------------------------
+
+#INICIO
+
+(LOS PANELES DE PROXIMA CITA, RECETAS, RESULTADOS, ESTADOSPAGOS SOLO DEBEN FUNCIONARA CUANDO EL PACIENTE HACE CLICK EN ELLOS CON JS)
+//GET (PROXIMAS CITAS)
+(TITULO HTML)
+tipodeconsulta_C
+fecha_C, horadisponible_C
+medico_C
+
+---------------
+#Nuevas citas
+//SET
+(TITULO HTML)
+especialidad_C
+medico
+fecha
+horadisponible_C (cada 30minutos con un descanso de 5min)
+tipodeconsulta_C
+motivoconsulta_C
+
+//GET
+(TITULO HTML)
+#MOSTRAR CITAS GENERADAS
+fecha_C, horadisponible_C
+medico_C, tipodeconsulta_C
+motivoconsulta_C
+
+//SET y GET
+(TITULO HTML)
+#REAGENDAR CITAS
+
+----------
+
+#HISTORIAL MEDICO
+//GET
+(TITULO HTML)
+fecha_HistorialGenerado
+medico_HistorialGenerado
+diagnostico_HistorialGenerado
+notas_HistorialGenerado
+
+---------------
+
+#RECETAS (PRESCRIPCION)
+//GET
+(TITULO HTML)
+
+fechaRecetada_Pac
+medico
+instrucciones
+duracionDeDosisOPastilla
+
+---------------
+
+#RESULTADOS_LABORATORIO
+//GET
+(TITULO HTML)
+fechaRealizadaLaboratorio
+tipoDeEstado (disponible, revisado por medico o las opciones que pongamos)
+
+---------------
+
+#PAGOS
+//GET
+
+tipodeconsulta_C, medico
+fechaPagada
+montoPagado
+
+---------------
+
+#MI_PERFIL
+//GET Y SET (PUEDE EDITAR SU INFORMACION EXCEPTO SU NOMBRES Y DNI)
+nombrePaciente
+apellidosPaciente
+emailPaciente
+telefonoPaciente
+fNacimientoPaciente
+direccionPaciente
+tipoDeSangrePaciente
+nombreEmergenciaPaciente, telfEmergenciaPaciente

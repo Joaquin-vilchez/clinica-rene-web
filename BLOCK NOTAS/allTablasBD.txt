@@ -1,0 +1,126 @@
+CREATE DATABASE sistemaRene;
+USE sistemaRene;
+
+CREATE TABLE rolesClinica(
+    id_Rol INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_Rol VARCHAR(30) NOT NULL UNIQUE,
+    descripcion_Rol VARCHAR(100),
+    tipoAcceso_Rol ENUM('Escritorio','Web') NOT NULL,
+    estado_Rol ENUM('Activo','Inactivo') DEFAULT 'Activo',
+    fCrear_Rol TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fActualizacion_Rol TIMESTAMP NULL
+);
+
+CREATE TABLE personas (
+    id_Persona INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido_paterno VARCHAR(100) NOT NULL,
+    apellido_materno VARCHAR(100),
+    telefono VARCHAR(20),
+    nacionalidad VARCHAR(30),
+    numero_documento VARCHAR(15) NOT NULL UNIQUE,
+    genero ENUM('M','F','Otro') NOT NULL,
+    fecha_nacimiento DATE,
+    direccion VARCHAR(200)
+);
+
+CREATE TABLE especialidades (
+    id_Especialidad INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_Especialidad VARCHAR(100) NOT NULL UNIQUE,
+    descripcion_Especialidad TEXT
+);
+
+CREATE TABLE usuariosClinica(
+    id_Users INT AUTO_INCREMENT PRIMARY KEY,
+    id_Rol INT NOT NULL,
+    id_Persona INT NOT NULL UNIQUE,
+    email_Users VARCHAR(100) UNIQUE,
+    pass_Users VARCHAR(255) NOT NULL,
+    fCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fUltima_Conex_Users TIMESTAMP NULL,
+    tokenRecup_Users VARCHAR(255) NULL,
+    fToken_Users TIMESTAMP NULL,
+    estado_Users ENUM('Activo','Suspendido','Bloqueado') DEFAULT 'Activo',
+    
+    FOREIGN KEY (id_Rol) REFERENCES rolesClinica(id_Rol),
+    FOREIGN KEY (id_Persona) REFERENCES personas(id_Persona)
+);
+
+CREATE TABLE doctores(
+    id_Doctor INT AUTO_INCREMENT PRIMARY KEY,
+    id_Persona INT NOT NULL UNIQUE, -- Enlace a la persona
+    id_Especialidad INT NOT NULL,  -- Enlace a la nueva tabla 'especialidades'
+    numero_colegiatura VARCHAR(50) UNIQUE NOT NULL,
+
+    FOREIGN KEY (id_Persona) REFERENCES personas(id_Persona),
+    FOREIGN KEY (id_Especialidad) REFERENCES especialidades(id_Especialidad)
+);
+
+CREATE TABLE enfermeras(
+    id_Enfermera INT AUTO_INCREMENT PRIMARY KEY,
+    id_Persona INT NOT NULL UNIQUE, -- Enlace a la persona
+    area_asignada VARCHAR(100),
+    turno ENUM('Mañana','Tarde','Noche'),
+
+    FOREIGN KEY (id_Persona) REFERENCES personas(id_Persona)
+);
+
+CREATE TABLE pacientes(
+    id_Paciente INT AUTO_INCREMENT PRIMARY KEY,
+    id_Persona INT NOT NULL UNIQUE, -- Enlace a la persona
+    tipo_sangre ENUM('A+','A-','B+','B-','AB+','AB-','O+','O-'),
+    alergias TEXT,
+    antecedentes_medicos TEXT,
+
+    FOREIGN KEY (id_Persona) REFERENCES personas(id_Persona)
+);
+
+INSERT INTO rolesClinica (nombre_Rol, descripcion_Rol, tipoAcceso_Rol) 
+VALUES
+('Administrador', 'Acceso total al sistema', 'Escritorio'),
+('Admision', 'Gestión de citas y pacientes', 'Escritorio'),
+('Doctor', 'Acceso a historial clínico y consultas', 'Escritorio'),
+('Enfermera', 'Acceso a triaje y signos vitales', 'Escritorio'),
+('Paciente', 'Acceso a portal de citas web', 'Web');
+
+INSERT INTO especialidades (nombre_Especialidad, descripcion_Especialidad)
+VALUES
+('Medicina General', 'Atención primaria y consultas generales.'),
+('Dermatología', 'Enfermedades de la piel, cabello y uñas.'),
+('Nutrición', 'Planes alimenticios y salud nutricional.'),
+('Odontología', 'Salud bucal y dental.'),
+('Cardiología', 'Enfermedades del corazón y sistema circulatorio.');
+
+
+#DOCTORES
+
+INSERT INTO personas (nombre, apellido_paterno, apellido_materno, numero_documento, genero, fecha_nacimiento) 
+VALUES ('Juan', 'Perez', 'Gomez', '12345678', 'M', '1985-03-15');
+
+INSERT INTO usuariosClinica (id_Rol, id_Persona, email_Users, pass_Users) 
+VALUES (3, LAST_INSERT_ID(), 'jperez@clinica.com', 'doc123');
+
+INSERT INTO doctores (id_Persona, id_Especialidad, numero_colegiatura) 
+VALUES ((SELECT id_Persona FROM usuariosClinica WHERE email_Users = 'jperez@clinica.com'), 1, 'CMP-90123');
+
+#PACIENTE
+
+
+#CREAR_CITAS
+CREATE TABLE citas (
+    id_Cita INT AUTO_INCREMENT PRIMARY KEY,
+    id_Paciente INT NOT NULL,
+    id_Doctor INT NOT NULL,
+    id_Especialidad INT NOT NULL, -- Para saber a qué especialidad fue (aunque el doctor ya la tenga)
+    
+    fechaHora_Cita DATETIME NOT NULL, -- Guarda la fecha y la hora juntas
+    
+    estado_Cita ENUM('Programada', 'Confirmada', 'En Espera', 'Completada', 'Cancelada', 'No Asistio') NOT NULL DEFAULT 'Programada',
+    
+    motivo_Consulta TEXT, -- Un breve motivo que el paciente puede ingresar al reservar
+    fCreacion_Cita TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (id_Paciente) REFERENCES pacientes(id_Paciente),
+    FOREIGN KEY (id_Doctor) REFERENCES doctores(id_Doctor),
+    FOREIGN KEY (id_Especialidad) REFERENCES especialidades(id_Especialidad)
+);

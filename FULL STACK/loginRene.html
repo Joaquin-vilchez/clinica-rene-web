@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clinica Rene - Login</title>
+    <link rel="stylesheet" href="loginRene.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container-nav">
+            <div class="sub-container">
+                <div class="logo-section">
+                    <div class="logo-image" aria-hidden="true">
+                        <img src="logoRene.png" alt="Logo Clínica Rene">
+                    </div>
+                    <div class="logo-text"><a href="/inicioRene.html">Clinica Rene</a></div>
+                </div>
+
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-links" id="navLinks" role="menubar">
+                    <li><a href="/especialidadRene.html">Especialidades</a></li>
+                    <li><a href="/serviciosRene.html">Servicios</a></li>
+                    <li><a href="/promocionRene.html">Promociones</a></li>
+                    <li><a href="/DOCTORES/doctorRene.html">Doctores</a></li>
+                    <li><a href="/nosotrosRene.html">Nosotros</a></li>
+                    <li><a id="sesion-link" href="/loginRene.html">Iniciar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="container" id="container">
+            
+            <div class="form-container register-container" id="registerPanel">
+                <form action="/registro-paciente" method="POST" id="registerForm">
+                    <h2 style="margin-bottom: 15px;">Crear Cuenta</h2>
+                    
+                    <div class="register-grid">
+                        
+                        <div class="grid-col">
+                            <div class="input-group">
+                                <i>👤</i>
+                                <input type="text" name="nombres" placeholder="Nombres" required />
+                            </div>
+                            <div class="input-group">
+                                <i>👤</i>
+                                <input type="text" name="apellidoPaterno" placeholder="Apellido Paterno" required />
+                            </div>
+                            <div class="input-group">
+                                <i>👤</i>
+                                <input type="text" name="apellidoMaterno" placeholder="Apellido Materno" />
+                            </div>
+                            <div class="input-group">
+                                <i>🪪</i>
+                                <input type="text" name="nDocumento" placeholder="Nº Documento" required />
+                            </div>
+                            <div class="input-group">
+                                <i>📞</i>
+                                <input type="tel" name="telefono" placeholder="Teléfono" />
+                            </div>
+                        </div>
+
+                        <div class="grid-col">
+                            <div class="input-group">
+                                <i>⚧</i> 
+                                <select name="genero" required style="width: 100%; padding: 15px 20px 15px 50px; border: 2px solid #e0e0e0; border-radius: 50px; outline: none; background: #fff; color: #757575;">
+                                    <option value="" disabled selected>Género</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <i>📅</i>
+                                <input type="text" name="fecha_nacimiento" placeholder="Fecha Nacimiento (Obligatorio)" required onfocus="(this.type='date')" onblur="(this.type='text')" />
+                            </div>
+                            <div class="input-group">
+                                <i>🌎</i>
+                                <input type="text" name="nacionalidad" placeholder="Nacionalidad" />
+                            </div>
+                            <div class="input-group">
+                                <i>🏠</i>
+                                <input type="text" name="direccion" placeholder="Dirección" />
+                            </div>
+                            <div class="input-group">
+                                <i>📧</i>
+                                <input type="email" name="email_personal" placeholder="Correo Personal" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tutorFields" style="display: none; width: 100%; margin-bottom: 15px; border-top: 1px solid #ccc; padding-top: 15px;">
+                        <h3 style="margin-bottom: 15px; color: #2C3E50;">Datos del Tutor Legal</h3>
+                        <div class="register-grid">
+                            <div class="grid-col">
+                                <div class="input-group">
+                                    <i>👤</i>
+                                    <input type="text" name="tutorNombre" id="tutorNombre" placeholder="Nombre(s) del Tutor" /> 
+                                </div>
+                                <div class="input-group">
+                                    <i>🪪</i>
+                                    <input type="text" name="tutorDocumento" id="tutorDocumento" placeholder="DNI del Tutor" />
+                                </div>
+                            </div>
+                            <div class="grid-col">
+                                <div class="input-group">
+                                    <i>📞</i>
+                                    <input type="tel" name="tutorTelefono" id="tutorTelefono" placeholder="Teléfono del Tutor" />
+                                </div>
+                                <div class="input-group">
+                                    <i>📧</i>
+                                    <input type="email" name="tutorEmail" id="tutorEmail" placeholder="Correo del Tutor (Opcional)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group full-width">
+                        <i>🔒</i>
+                        <input type="password" name="contrasena" placeholder="Contraseña" required />
+                    </div>
+
+                    <button type="submit" class="btn" style="margin-top: 5px;">Registrarse</button>
+
+                    <button type="button" class="switch-btn" id="toLoginMobile">¿Ya tienes cuenta? Inicia sesión</button>
+                </form>
+            </div>
+
+            <div class="form-container login-container" id="loginPanel">
+                <form action="/login" method="POST" id="loginForm">
+                    <h2>Iniciar Sesión</h2>
+                    <div class="input-group">
+                        <i>🪪</i>
+                        <input type="text" name="nDocumento" placeholder="Nº Documento" required />
+                    </div>
+                    <div class="input-group">
+                        <i>🔒</i>
+                        <input type="password" name="contrasena" placeholder="Contraseña" required />
+                    </div>
+                    
+                    <a href="#" id="forgotPasswordLink" style="font-size: 0.9em; color: #667eea; margin-bottom: 15px; align-self: flex-end; text-decoration: none;">Olvidé Contraseña</a> 
+
+                    <button type="submit" class="btn">Entrar</button>
+
+                    <button type="button" class="switch-btn" id="toRegisterMobile">¿No tienes cuenta? Regístrate</button>
+                </form>
+            </div>
+
+            <div class="overlay-container" aria-hidden="true">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h2>Hola Usuario</h2>
+                        <p>Si ya tienes una cuenta, continuemos donde lo dejaste</p>
+                        <button class="ghost-btn" id="signIn">Iniciar Sesión</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h2>Hola Usuario</h2>
+                        <p>Registrate con nosotros y conoce lo mejor de nuestro servicio</p>
+                        <button class="ghost-btn" id="signUp">Registrate Aqui</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-backdrop" id="forgotPasswordModal">
+        <div class="modal">
+            <h2>Recuperar Contraseña</h2>
+            <p>Ingrese su Nº Documento o Correo Electrónico para recibir un enlace de restablecimiento.</p>
+            <form action="/forgot-password" method="POST" id="forgotPasswordForm">
+                <div class="input-group">
+                    <i>👤</i>
+                    <input type="text" name="identificador" placeholder="DNI o Correo" required />
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn secondary-btn" id="closeModalBtn">Cancelar</button>
+                    <button type="submit" class="btn primary-btn">Enviar Enlace</button>
+                </div>
+            </form>
+            <p id="recoveryMessage" style="margin-top: 15px;"></p>
+        </div>
+    </div>
+    <script src="loginRene.js"></script>
+    <script src="./commonRene.js"></script>
+</body>
+
+</html>

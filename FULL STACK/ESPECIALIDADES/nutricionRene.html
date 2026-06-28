@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrición - Clínica Rene</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="allEspeciRene.css">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <div class="logo-image">
+                        <img src="/IMG_RENE/logoRene.png" alt="Logo Clínica Rene">
+                    </div>
+                    <div class="logo-text">
+                        <a href="#">Clinica Rene</a>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/FULL STACK/especialidadRene.html">Especialidades</a></li>
+                    <li><a href="/FULL STACK/serviciosRene.html">Servicios</a></li>
+                    <li><a href="/FULL STACK/promocionRene.html">Promociones</a></li>
+                    <li><a href="/FULL STACK/DOCTORES/">Doctores</a></li>
+                    <li><a href="/FULL STACK/nosotrosRene.html">Nosotros</a></li>
+                    <li><a href="/FULL STACK/loginRene.html">Iniciar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Atención Nutricional de Excelencia</h1>
+                        <p>Especialistas en salud y alimentación con planes personalizados y un enfoque integral en tu
+                            bienestar.</p>
+
+                        <div class="cta-buttons">
+                            <a href="#" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Agendar Cita</a>
+                            <a href="#servicios" class="btn btn-secondary"><i class="fas fa-info-circle"></i> Conocer
+                                Más</a>
+                        </div>
+
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">X+</span>
+                                <span class="stat-label">Años de Experiencia</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">XXXX+</span>
+                                <span class="stat-label">Pacientes Atendidos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">XX%</span>
+                                <span class="stat-label">Satisfacción</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="hero-image-circle"><i class="fas fa-apple-alt"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-balance-scale"></i></span>
+                        <h3>Diagnóstico Preciso</h3>
+                        <p>Evaluación de composición corporal y análisis de hábitos alimenticios.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-user-md"></i></span>
+                        <h3>Especialistas Certificados</h3>
+                        <p>Nutricionistas colegiados y con experiencia en diversas áreas clínicas.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-seedling"></i></span>
+                        <h3>Atención Integral</h3>
+                        <p>Enfoque en el cambio de hábitos sostenible para una salud a largo plazo.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon"><i class="fas fa-clipboard-list"></i></span>
+                        <h3>Planes Personalizados</h3>
+                        <p>Dietas y planes de alimentación creados exclusivamente para tus objetivos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Información Médica</h2>
+                    <p>Conoce más sobre las condiciones nutricionales más comunes y cómo podemos ayudarte</p>
+                </div>
+
+                <div class="tabs-container">
+                    <button class="tab-btn active" data-tab="enfermedades">Condiciones</button>
+                    <button class="tab-btn" data-tab="sintomas">Síntomas</button>
+                    <button class="tab-btn" data-tab="tratamientos">Tratamientos</button>
+                    <button class="tab-btn" data-tab="prevencion">Prevención</button>
+                </div>
+
+                <div class="tab-content active" id="enfermedades">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-weight"></i></span>
+                            <div class="info-item-content">
+                                <h5>Sobrepeso y Obesidad</h5>
+                                <p>Manejo integral para la pérdida de peso saludable y sostenible mediante planes de
+                                    alimentación.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-cookie-bite"></i></span>
+                            <div class="info-item-content">
+                                <h5>Manejo de Diabetes</h5>
+                                <p>Planes nutricionales para controlar los niveles de glucosa en sangre y mejorar la
+                                    sensibilidad a la insulina.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-tachometer-alt"></i></span>
+                            <div class="info-item-content">
+                                <h5>Hipertensión Arterial</h5>
+                                <p>Asesoría en dietas bajas en sodio (como la dieta DASH) para el control de la presión
+                                    arterial.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-stomach"></i></span>
+                            <div class="info-item-content">
+                                <h5>Trastornos Digestivos</h5>
+                                <p>Dietas para síndrome de colon irritable, gastritis, reflujo y otras afecciones
+                                    gastrointestinales.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-allergies"></i></span>
+                            <div class="info-item-content">
+                                <h5>Alergias e Intolerancias</h5>
+                                <p>Planes de alimentación excluyendo alérgenos (gluten, lactosa) asegurando una
+                                    nutrición
+                                    completa.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-dumbbell"></i></span>
+                            <div class="info-item-content">
+                                <h5>Nutrición Deportiva</h5>
+                                <p>Optimización del rendimiento y la recuperación muscular a través de la alimentación
+                                    estratégica.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="sintomas">
+                    <div class="content-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-weight-hanging"></i> Aumento de Peso</h4>
+                            <p>Ganancia de peso inexplicable o dificultad para perderlo.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-tired"></i> Fatiga y Baja Energía</h4>
+                            <p>Cansancio crónico que puede estar ligado a deficiencias nutricionales.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-wind"></i> Problemas Digestivos</h4>
+                            <p>Hinchazón, gases, estreñimiento o diarrea frecuentes.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-cookie"></i> Antojos Constantes</h4>
+                            <p>Deseo recurrente por alimentos dulces, salados o procesados.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-spa"></i> Cambios en Piel y Cabello</h4>
+                            <p>Piel seca, acné o caída de cabello pueden indicar desbalances.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-brain"></i> Niebla Mental</h4>
+                            <p>Dificultad para concentrarse o falta de claridad mental.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tratamientos">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-clipboard-list"></i></span>
+                            <div class="info-item-content">
+                                <h5>Plan Nutricional Personalizado</h5>
+                                <p>Diseño de un plan de comidas basado en tus objetivos, horarios y preferencias.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-book-reader"></i></span>
+                            <div class="info-item-content">
+                                <h5>Educación Alimentaria</h5>
+                                <p>Aprender a leer etiquetas, elegir alimentos y construir hábitos saludables.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-percentage"></i></span>
+                            <div class="info-item-content">
+                                <h5>Análisis de Composición Corporal</h5>
+                                <p>Medición de porcentaje de grasa, masa muscular y agua corporal.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-notes-medical"></i></span>
+                            <div class="info-item-content">
+                                <h5>Nutrición Clínica</h5>
+                                <p>Planes específicos para manejar enfermedades crónicas como diabetes o hipertensión.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-comments"></i></span>
+                            <div class="info-item-content">
+                                <h5>Coaching Nutricional</h5>
+                                <p>Seguimiento y motivación constante para ayudarte a alcanzar tus metas.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-icon"><i class="fas fa-pills"></i></span>
+                            <div class="info-item-content">
+                                <h5>Suplementación Guiada</h5>
+                                <p>Recomendación de vitaminas o minerales basada en análisis y necesidades.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="prevencion">
+                    <div class="content-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-tint"></i> Hidratación Adecuada</h4>
+                            <p>Beber 2-3 litros de agua diarios es clave para el metabolismo.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-apple-alt"></i> Dieta Balanceada</h4>
+                            <p>Basar la dieta en alimentos reales, priorizando frutas y verduras.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-running"></i> Ejercicio Regular</h4>
+                            <p>Complementar la buena alimentación con actividad física constante.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-cookie-bite"></i> Moderar Azúcares</h4>
+                            <p>Reducir el consumo de azúcares añadidos y alimentos ultraprocesados.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-calendar-check"></i> Chequeos Regulares</h4>
+                            <p>Evaluaciones nutricionales periódicas para ajustar planes y metas.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-brain"></i> Alimentación Consciente</h4>
+                            <p>Prestar atención a las señales de hambre y saciedad del cuerpo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="equipment-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Tecnología de Vanguardia</h2>
+                    <p>Contamos con equipamiento de última generación para diagnósticos precisos y planes efectivos</p>
+                </div>
+
+                <div class="equipment-grid">
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-percentage"></i></span>
+                        <h3>Analizador InBody</h3>
+                        <p>Tecnología de bioimpedancia para un análisis de composición corporal exacto (grasa, músculo,
+                            agua).</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-calculator"></i></span>
+                        <h3>Software de Análisis Nutricional</h3>
+                        <p>Programas avanzados para calcular macronutrientes y micronutrientes de tu dieta.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-fire"></i></span>
+                        <h3>Calorimetría Indirecta</h3>
+                        <p>Mide tu tasa metabólica basal (calorías en reposo) para planes de déficit precisos.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-ruler-vertical"></i></span>
+                        <h3>Plicómetro Profesional</h3>
+                        <p>Medición precisa de pliegues cutáneos para el seguimiento del porcentaje de grasa.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-bolt"></i></span>
+                        <h3>Básculas de Bioimpedancia</h3>
+                        <p>Monitoreo rápido de peso, grasa corporal, masa muscular e hidratación.</p>
+                    </div>
+
+                    <div class="equipment-card">
+                        <span class="equipment-icon"><i class="fas fa-laptop-medical"></i></span>
+                        <h3>Material Educativo Interactivo</h3>
+                        <p>Aplicaciones y guías digitales para apoyar tu aprendizaje y seguimiento en casa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>¿Necesitas asesoría nutricional?</h2>
+                    <p>No esperes más para mejorar tu salud y bienestar. Agenda tu cita con nuestros especialistas y
+                        alcanza tus objetivos.</p>
+                    <a href="#" class="btn btn-primary"><i class="fas fa-calendar-plus"></i> Agendar Cita Ahora</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Clínica Rene</h3>
+                    <p class="footer-tagline">Si no sana hoy, sanará mañana</p>
+                    <p>Un paso más cerca de sentirte mejor</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="especialidades.html">Especialidades</a></li>
+                        <li><a href="doctores.html">Nuestros Doctores</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Servicios Nutricionales</h3>
+                    <ul>
+                        <li><a href="#">Consulta Nutricional</a></li>
+                        <li><a href="#">Planes para Bajar Peso</a></li>
+                        <li><a href="#">Nutrición Deportiva</a></li>
+                        <li><a href="#">Nutrición Clínica</a></li>
+                        <li><a href="#">Planes Vegetarianos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                            <span>Av. Lima Sur 123, Lima</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+                            <a href="tel:+5114218900">(01) 234-5678</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-mobile-alt"></i></span>
+                            <a href="#">+51 987 654 321</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                            <a href="mailto:info@clinicarene.com">info@clinicarene.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fas fa-clock"></i></span>
+                            <span>Lun - Dom: 24 Horas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Clinica Rene. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Libro de Reclamaciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="allEspeciRene.js"></script>
+</body>
+
+</html>

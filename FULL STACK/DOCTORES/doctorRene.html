@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Staff Médico - Clínica Rene</title>
+    <link rel="stylesheet" href="doctorRene.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <div class="logo-image" aria-hidden="true">
+                        <img src="logoRene.png" alt="Logo Clínica Rene">
+                    </div>
+                    <div class="logo-text"><a href="/inicioRene.html">Clinica Rene</a></div>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links" id="navLinks" role="menubar">
+                    <li><a href="/especialidadRene.html">Especialidades</a></li>
+                    <li><a href="/serviciosRene.html">Servicios</a></li>
+                    <li><a href="/promocionRene.html">Promociones</a></li>
+                    <li><a href="/DOCTORES/doctorRene.html">Doctores</a></li>
+                    <li><a href="/nosotrosRene.html">Nosotros</a></li>
+                    
+                    <li><a id="sesion-link" href="/loginRene.html">Iniciar Sesion</a></li>
+
+                    <li id="logout-li" style="display: none;">
+                        <a href="#" id="logout-link" style="color: #e74c3c;">Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header class="page-header loading">
+            <div class="container">
+                <h1>Nuestro Staff Médico</h1>
+                <p>Profesionales altamente calificados comprometidos con tu salud</p>
+            </div>
+        </header>
+
+        <section class="doctors-section">
+            <div class="container">
+                <div class="filters loading" id="filters">
+                    <button class="filter-btn active" data-specialty="all">Todas las especialidades</button>
+                    <button class="filter-btn" data-specialty="medicina-general">Medicina General</button>
+                    <button class="filter-btn" data-specialty="dermatologia">Dermatología</button>
+                    <button class="filter-btn" data-specialty="odontologia">Odontología</button>
+                    <button class="filter-btn" data-specialty="urologia">Urología</button>
+                    <button class="filter-btn" data-specialty="Nutrición">Nutrición</button>
+                </div>
+
+                <section class="doctors-grid loading" id="doctors-grid">
+                    </section>
+            </div>
+        </section>
+
+        <div id="doctor-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <div class="modal-body" id="modal-body">
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Clínica Rene</h3>
+                    <p class="footer-tagline">Si no sana hoy, sanará mañana</p>
+                    <p>Un paso más cerca de sentirte mejor</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="/especialidadRene.html">Especialidades</a></li>
+                        <li><a href="/DOCTORES/doctorRene.html">Nuestros Doctores</a></li>
+                        <li><a href="/serviciosRene.html">Servicios</a></li>
+                        <li><a href="/nosotrosRene.html">Sobre Nosotros</a></li>
+                        <li><a href="/promocionRene.html">Promociones</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#">Consulta Externa</a></li>
+                        <li><a href="#">Hospitalización</a></li>
+                        <li><a href="#">Cirugía</a></li>
+                        <li><a href="#">Laboratorio</a></li>
+                        <li><a href="#">Imagenología</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon" aria-hidden="true">📍</span>
+                            <span> Av. Lima Sur 123, Lima</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon" aria-hidden="true">📞</span>
+                            <a href="tel:+5114218900" style="color: inherit;">(01) 234-5678</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon" aria-hidden="true">📱</span>
+                            <a href="#">+51 987 654 321</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon" aria-hidden="true">✉️</span>
+                            <a href="mailto:info@clinicarene.com" style="color: inherit;">info@clinicarene.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon" aria-hidden="true">🕐</span>
+                            <span>Lun - Dom: 24 Horas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Clinica Rene. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Terminos y Condiciones</a>
+                    <a href="#">Politica de Privacidad</a>
+                    <a href="#">Libro de Reclamaciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="doctorRene.js"></script>
+    <script src="/commonRene.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,774 @@
+DROP DATABASE sistemaRene;
+CREATE DATABASE sistemaRene;
+USE sistemaRene;
+
+CREATE TABLE rolesClinica(
+    id_Rol INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_Rol VARCHAR(30) NOT NULL UNIQUE,
+    descripcion_Rol VARCHAR(100),
+    tipoAcceso_Rol ENUM('Escritorio','Web') NOT NULL,
+    estado_Rol ENUM('Activo','Inactivo') DEFAULT 'Activo',
+    fCrear_Rol TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fActualizacion_Rol TIMESTAMP NULL
+);
+
+CREATE TABLE personas (
+    id_Persona INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido_paterno VARCHAR(100) NOT NULL,
+    apellido_materno VARCHAR(100),
+    telefono VARCHAR(20),
+    nacionalidad VARCHAR(30),
+    numero_documento VARCHAR(15) NOT NULL UNIQUE,
+    genero ENUM('M','F','Otro') NOT NULL,
+    fecha_nacimiento DATE,
+    direccion VARCHAR(200)
+);
+
+CREATE TABLE especialidades (
+    id_Especialidad INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_Especialidad VARCHAR(100) NOT NULL UNIQUE,
+    descripcion_Especialidad TEXT,
+    detalles_especialidad varchar(50)
+);
+
+CREATE TABLE consultorios (
+    id_Consultorio INT AUTO_INCREMENT PRIMARY KEY,
+    id_Especialidad INT NOT NULL,
+    numero_Consultorio VARCHAR(10) NOT NULL UNIQUE,
+    piso INT NOT NULL,
+    estado_Consultorio ENUM('Disponible', 'Ocupado', 'Mantenimiento') DEFAULT 'Disponible',
+
+    FOREIGN KEY (id_Especialidad) REFERENCES especialidades(id_Especialidad)
+);
+
+CREATE TABLE usuariosClinica(
+    id_Users INT AUTO_INCREMENT PRIMARY KEY,
+    id_Rol INT NOT NULL,
+    id_Persona INT NOT NULL UNIQUE,
+    email_Users VARCHAR(100) UNIQUE,
+    pass_Users VARCHAR(255) NOT NULL,
+    fCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fUltima_Conex_Users TIMESTAMP NULL,
+    tokenRecup_Users VARCHAR(255) NULL,
+    fToken_Users TIMESTAMP NULL,
+    estado_Users ENUM('Activo','Suspendido','Bloqueado') DEFAULT 'Activo',
+
+    FOREIGN KEY (id_Rol) REFERENCES rolesClinica(id_Rol),
+    FOREIGN KEY (id_Persona) REFERENCES personas(id_Persona)
+);
+
+CREATE TABLE doctores(
+    id_Doctor INT AUTO_INCREMENT PRIMARY KEY,
+    id_Persona INT NOT NULL,
+    id_Especialidad INT NOT NULL,
+    numero_colegiatura VARCHAR(50) UNIQUE NOT NULL,
+	
+
+    FOREIGN KEY (id_Persona) REFERENCES personas(id_Persona),
+    FOREIGN KEY (id_Especialidad) REFERENCES especialidades(id_Especialidad)
+);
+
+CREATE TABLE horarios_doctores (
+    id_Horario INT AUTO_INCREMENT PRIMARY KEY,
+    id_Doctor INT NOT NULL,
+    id_Consultorio INT NOT NULL,
+    dia_semana ENUM('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo') NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_fin TIME NOT NULL,
+    estado_Horario ENUM('Activo','Inactivo') DEFAULT 'Activo',
+
+    FOREIGN KEY (id_Doctor) REFERENCES doctores(id_Doctor),
+    FOREIGN KEY (id_Consultorio) REFERENCES consultorios(id_Consultorio),
+
+    UNIQUE KEY unique_doctor_horario (id_Doctor, dia_semana, hora_inicio)
+);
+
+CREATE TABLE admision (
+    id_Admision INT AUTO_INCREMENT PRIMARY KEY,
+    id_Persona INT NOT NULL,
+    turno ENUM('Manana', 'Tarde'),
+
+    FOREIGN KEY (id_Persona) REFERENCES personas(id_Persona)
+);
+
+CREATE TABLE enfermeras(
+    id_Enfermera INT AUTO_INCREMENT PRIMARY KEY,
+    id_Persona INT NOT NULL,
+    turno ENUM('Manana','Tarde'),
+
+    FOREIGN KEY (id_Persona) REFERENCES personas(id_Persona)
+);
+
+CREATE TABLE pacientes(
+    id_Paciente INT AUTO_INCREMENT PRIMARY KEY,
+    id_Persona INT NOT NULL,
+    tipo_sangre ENUM('A+','A-','B+','B-','AB+','AB-','O+','O-'),
+    alergias TEXT,
+    antecedentes_medicos TEXT,
+    id_Tutor_Persona INT NULL,
+
+    FOREIGN KEY (id_Persona) REFERENCES personas(id_Persona),
+    FOREIGN KEY (id_Tutor_Persona) REFERENCES personas(id_Persona)
+);
+
+CREATE TABLE citas (
+    id_Cita INT AUTO_INCREMENT PRIMARY KEY,
+    id_Paciente INT NOT NULL,
+    id_Doctor INT NOT NULL,
+    id_Especialidad INT NOT NULL,
+    id_Consultorio INT NOT NULL,
+
+    fechaHora_Cita DATETIME NOT NULL,
+    duracion_minutos INT DEFAULT 30,
+
+    estado_Cita ENUM('Programada', 'Confirmada', 'En Espera', 'Completada', 'Cancelada', 'No Asistio') NOT NULL DEFAULT 'Programada',
+    estado_triaje ENUM('Pendiente', 'En Proceso', 'Completado') DEFAULT 'Pendiente',
+    id_Triaje INT NULL,
+    tipo_consulta ENUM('consulta general', 'seguimiento', 'control') DEFAULT 'consulta general',
+    motivo_Consulta TEXT,
+    fCreacion_Cita TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (id_Paciente) REFERENCES pacientes(id_Paciente),
+    FOREIGN KEY (id_Doctor) REFERENCES doctores(id_Doctor),
+    FOREIGN KEY (id_Especialidad) REFERENCES especialidades(id_Especialidad),
+    FOREIGN KEY (id_Consultorio) REFERENCES consultorios(id_Consultorio),
+
+    UNIQUE KEY unique_doctor_horario (id_Doctor, fechaHora_Cita),
+    UNIQUE KEY unique_consultorio_horario (id_Consultorio, fechaHora_Cita)
+);
+
+-- Tabla de pagos (versión correcta con foreign key)
+CREATE TABLE pagos (
+    id_Pago INT PRIMARY KEY AUTO_INCREMENT,
+    id_Cita INT NOT NULL,
+    id_Paciente INT NOT NULL,
+    monto DECIMAL(10,2) NOT NULL,
+    metodo_Pago ENUM('Efectivo', 'Tarjeta Debito', 'Transferencia') DEFAULT 'Efectivo',
+    estado_Pago ENUM('Pendiente', 'Pagado', 'Vencido', 'Anulado') DEFAULT 'Pendiente',
+    fecha_Limite DATETIME NOT NULL COMMENT 'Fecha limite para pagar (24h antes)',
+    fecha_Pago DATETIME COMMENT 'Cuando realmente se pago',
+    fCreacion_Pago DATETIME DEFAULT CURRENT_TIMESTAMP,
+    numero_Comprobante VARCHAR(50) UNIQUE,
+    tipo_Comprobante ENUM('Boleta', 'Factura') DEFAULT 'Boleta',
+    numero_Operacion VARCHAR(50) COMMENT 'Para tarjeta/transferencia',
+    observaciones TEXT,
+    id_Usuario_Registro INT COMMENT 'Usuario que registro el pago',
+    FOREIGN KEY (id_Cita) REFERENCES citas(id_Cita),
+    FOREIGN KEY (id_Paciente) REFERENCES pacientes(id_Paciente),
+    FOREIGN KEY (id_Usuario_Registro) REFERENCES usuariosClinica(id_Users),
+    
+    INDEX idx_cita (id_Cita),
+    INDEX idx_paciente (id_Paciente),
+    INDEX idx_estado (estado_Pago),
+    INDEX idx_fecha_limite (fecha_Limite)
+) COMMENT 'Gestion de pagos de consultas medicas';
+
+
+CREATE TABLE triajes (
+    id_Triaje INT AUTO_INCREMENT PRIMARY KEY,
+    id_Cita INT NOT NULL,
+    id_Enfermera INT NOT NULL,
+    presion_arterial VARCHAR(20),
+    frecuencia_cardiaca INT,
+    frecuencia_respiratoria INT,
+    temperatura DECIMAL(4,2),
+    saturacion_oxigeno INT,
+    peso DECIMAL(5,2),
+    talla DECIMAL(6,2),
+    imc DECIMAL(4,2),
+    tipo_sangre VARCHAR(5),
+    glucemia INT,
+    alergias_actualizadas TEXT,
+    motivo_consulta_detallado TEXT,
+    sintomas_principales TEXT,
+    nivel_urgencia ENUM('Baja', 'Media', 'Alta') DEFAULT 'Baja',
+    observaciones TEXT,
+    fecha_triaje TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    estado_Triaje ENUM('Pendiente', 'Completado') DEFAULT 'Pendiente',
+
+    FOREIGN KEY (id_Cita) REFERENCES citas(id_Cita),
+    FOREIGN KEY (id_Enfermera) REFERENCES enfermeras(id_Enfermera)
+);
+
+#CONSULTAS
+CREATE TABLE consultas (
+    id_Consulta INT AUTO_INCREMENT PRIMARY KEY,
+    id_Cita INT NOT NULL,
+    id_Doctor INT NOT NULL,
+    id_Paciente INT NOT NULL,
+
+    diagnostico TEXT NOT NULL,
+    sintomas TEXT,
+    observaciones TEXT,
+    tratamiento TEXT,
+    fecha_consulta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (id_Cita) REFERENCES citas(id_Cita),
+    FOREIGN KEY (id_Doctor) REFERENCES doctores(id_Doctor),
+    FOREIGN KEY (id_Paciente) REFERENCES pacientes(id_Paciente),
+
+    INDEX idx_doctor (id_Doctor),
+    INDEX idx_paciente (id_Paciente),
+    INDEX idx_fecha (fecha_consulta)
+);
+
+CREATE TABLE estados_cita (
+    id_estado INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(50) NOT NULL
+);
+
+#CATALOGO
+CREATE TABLE medicamentos (
+    id_Medicamento INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_comercial VARCHAR(100) NOT NULL,
+    nombre_generico VARCHAR(100),
+    presentacion VARCHAR(50),
+    concentracion VARCHAR(50),
+    via_administracion ENUM('Oral','Intravenosa','Intramuscular','Topica','Sublingual','Inhalatoria','Rectal','Otra') NOT NULL,
+    tipo_medicamento ENUM('Analgesico','Antibiotico','Antiinflamatorio','Antihipertensivo','Antidiabetico','Vitamina','Otro') DEFAULT 'Otro',
+    estado ENUM('Activo','Inactivo') DEFAULT 'Activo',
+
+    INDEX idx_nombre_comercial (nombre_comercial),
+    INDEX idx_tipo (tipo_medicamento)
+);
+
+#RECETAS
+CREATE TABLE recetas (
+    id_Receta INT AUTO_INCREMENT PRIMARY KEY,
+    id_Consulta INT NOT NULL,
+    id_Doctor INT NOT NULL,
+    id_Paciente INT NOT NULL,
+
+    fecha_emision TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    observaciones TEXT,
+    estado ENUM('Activa','Vencida','Anulada') DEFAULT 'Activa',
+
+    FOREIGN KEY (id_Consulta) REFERENCES consultas(id_Consulta),
+    FOREIGN KEY (id_Doctor) REFERENCES doctores(id_Doctor),
+    FOREIGN KEY (id_Paciente) REFERENCES pacientes(id_Paciente),
+
+    INDEX idx_doctor (id_Doctor),
+    INDEX idx_paciente (id_Paciente),
+    INDEX idx_fecha (fecha_emision)
+);
+
+#DETALLE DE RECETAS
+CREATE TABLE detalle_recetas (
+    id_Detalle INT AUTO_INCREMENT PRIMARY KEY,
+    id_Receta INT NOT NULL,
+    id_Medicamento INT NOT NULL,
+
+    dosis VARCHAR(100) NOT NULL,
+    frecuencia VARCHAR(100) NOT NULL,
+    duracion VARCHAR(50) NOT NULL,
+    cantidad INT NOT NULL,
+    indicaciones TEXT,
+
+    FOREIGN KEY (id_Receta) REFERENCES recetas(id_Receta) ON DELETE CASCADE,
+    FOREIGN KEY (id_Medicamento) REFERENCES medicamentos(id_Medicamento)
+);
+
+#ORDENES
+CREATE TABLE ordenes_laboratorio (
+    id_Orden INT AUTO_INCREMENT PRIMARY KEY,
+    id_Consulta INT NOT NULL,
+    id_Doctor INT NOT NULL,
+    id_Paciente INT NOT NULL,
+
+    tipo_examen VARCHAR(100) NOT NULL,
+    indicaciones TEXT,
+    estado ENUM('Pendiente','En Proceso','Completado','Cancelado') DEFAULT 'Pendiente',
+
+    fecha_orden TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_resultado TIMESTAMP NULL,
+    resultado TEXT,
+    observaciones_resultado TEXT,
+
+    FOREIGN KEY (id_Consulta) REFERENCES consultas(id_Consulta),
+    FOREIGN KEY (id_Doctor) REFERENCES doctores(id_Doctor),
+    FOREIGN KEY (id_Paciente) REFERENCES pacientes(id_Paciente),
+
+    INDEX idx_doctor (id_Doctor),
+    INDEX idx_paciente (id_Paciente),
+    INDEX idx_estado (estado)
+);
+
+#Aqui empece a insertar datos
+
+INSERT INTO estados_cita (descripcion) VALUES
+  ('Programada'),
+  ('Confirmada'),
+  ('En Espera'),
+  ('Atendido'),
+  ('Cancelada'),
+  ('No Asistió');
+
+
+INSERT INTO rolesClinica (nombre_Rol, descripcion_Rol, tipoAcceso_Rol) 
+VALUES
+('Administrador', 'Acceso total al sistema', 'Escritorio'),
+('Admision', 'Gestion de citas y pacientes', 'Escritorio'),
+('Doctor', 'Acceso a historial clinico y consultas', 'Escritorio'),
+('Enfermera', 'Acceso a triaje y signos vitales', 'Escritorio'),
+('Paciente', 'Acceso a portal de citas web', 'Web');
+
+INSERT INTO especialidades (nombre_Especialidad, descripcion_Especialidad)
+VALUES
+('Medicina General', 'Atencion primaria y consultas generales.'),
+('Dermatologia', 'Enfermedades de la piel, cabello y unas.'),
+('Nutricion', 'Planes alimenticios y salud nutricional.'),
+('Odontologia', 'Salud bucal y dental.'),
+('Cardiologia', 'Enfermedades del corazon y sistema circulatorio.');
+
+INSERT INTO consultorios (id_Especialidad, numero_Consultorio, piso)
+VALUES 
+(1, '201', 2),
+(2, '301', 3),
+(3, '401', 4),
+(4, '501', 5),
+(5, '601', 6);
+
+INSERT INTO personas (nombre, apellido_paterno, apellido_materno, telefono, numero_documento, genero, fecha_nacimiento, direccion) 
+VALUES 
+('Jean', 'Zeta', 'Ele', '987123456', '00000000', 'M', '1985-03-15', 'Av. Villa 123, Lima'),
+('Juan', 'Perez', 'Gomez', '987123456', '12345678', 'M', '1985-03-15', 'Av. Arequipa 123, Lima'),
+('Maria', 'Lopez', 'Torres', '987123457', '12345679', 'F', '1988-07-20', 'Jr. Junin 456, Lima'),
+('Carlos', 'Ramirez', 'Silva', '987123458', '12345680', 'M', '1982-11-10', 'Av. Javier Prado 789, Lima'),
+('Ana', 'Fernandez', 'Rojas', '987123459', '12345681', 'F', '1990-05-25', 'Calle Los Pinos 234, Lima'),
+('Patricia', 'Vargas', 'Mendoza', '987123460', '12345682', 'F', '1987-08-14', 'Av. Universitaria 567, Lima'),
+('Ricardo', 'Mendoza', 'Vega', '987123461', '12345683', 'M', '1983-04-18', 'Av. Angamos 123, Lima'),
+('Sofia', 'Castro', 'Ruiz', '987123462', '12345684', 'F', '1986-09-22', 'Jr. Ica 456, Lima'),
+('Javier', 'Herrera', 'Diaz', '987123463', '12345685', 'M', '1979-12-05', 'Av. Tacna 789, Lima'),
+('Elena', 'Morales', 'Santos', '987123464', '12345686', 'F', '1984-06-30', 'Calle Lima 234, Lima'),
+('Lucia', 'Paredes', 'Gomez', '987123465', '12345687', 'F', '1988-03-12', 'Av. Bolivar 567, Lima'),
+('Rosa', 'Garcia', 'Lopez', '987654321', '87654321', 'F', '1990-08-15', 'Av. Lima 789'),
+('Luis', 'Martinez', 'Sanchez', '987654322', '87654322', 'M', '1988-12-10', 'Jr. Ayacucho 456'),
+('Laura', 'Gutierrez', 'Mendoza', '987111222', '11111111', 'F', '1990-03-20', 'Av. Salaverry 123, Lima'),
+('Miguel', 'Santos', 'Paredes', '987333444', '22222222', 'M', '1988-07-15', 'Jr. Carabaya 456, Lima'),
+('Maria', 'Gonzales', 'Perez', '987111000', '77777777', 'F', '1985-08-20', 'Av. Lima 123'),
+('Carlos', 'Rodriguez', 'Silva', '987111001', '77777778', 'M', '1990-03-15', 'Jr. Ayacucho 456'),
+('Ana', 'Torres', 'Mendoza', '987111002', '77777779', 'F', '1978-11-30', 'Av. Brasil 789'),
+('Isabel', 'Castillo', 'Rojas', '999888777', '44556677', 'F', '1990-05-10', 'Av. Los Girasoles 456, Lima'),
+('Mateo', 'Diaz', 'Castillo', '999888777', '10101010', 'M', '2015-02-20', 'Av. Los Girasoles 456, Lima'),
+('Pedro', 'Garcia', 'Lopez', '987111003', '77777780', 'M', '1992-04-10', 'Av. Miraflores 123, Lima'),
+('Luisa', 'Martinez', 'Sanchez', '987111004', '77777781', 'F', '1988-09-15', 'Jr. Trujillo 456, Lima'),
+('Jorge', 'Diaz', 'Rojas', '987111005', '77777782', 'M', '1975-12-20', 'Av. Progreso 789, Lima'),
+('Carmen', 'Torres', 'Vega', '987111006', '77777783', 'F', '1995-07-03', 'Calle Los Olivos 234, Lima'),
+('Roberto', 'Silva', 'Mendoza', '987111007', '77777784', 'M', '1980-01-25', 'Av. Lima 567, Lima'),
+('Elena', 'Castro', 'Ruiz', '987111008', '77777785', 'F', '1993-11-08', 'Jr. Ayacucho 890, Lima'),
+('Daniel', 'Herrera', 'Perez', '987111009', '77777786', 'M', '1987-06-14', 'Av. Brasil 111, Lima'),
+('Susana', 'Morales', 'Gomez', '987111010', '77777787', 'F', '1991-02-28', 'Calle Los Pinos 222, Lima'),
+('Fernando', 'Rios', 'Castillo', '987111011', '77777788', 'M', '1972-08-17', 'Av. Javier Prado 333, Lima'),
+('Gabriela', 'Flores', 'Diaz', '987111012', '77777789', 'F', '1984-03-22', 'Jr. Ica 444, Lima'),
+('Pablo', 'Salas', 'Torres', '987111013', '77777790', 'M', '1998-05-30', 'Av. Tacna 555, Lima'),
+('Valeria', 'Romero', 'Lopez', '987111014', '77777791', 'F', '1996-10-12', 'Calle Lima 666, Lima'),
+('Raul', 'Mendoza', 'Sanchez', '987111015', '77777792', 'M', '1983-04-05', 'Av. Bolivar 777, Lima'),
+('Camila', 'Vega', 'Ramirez', '987111016', '77777793', 'F', '1994-07-19', 'Jr. Junin 888, Lima'),
+('Diego', 'Paredes', 'Garcia', '987111017', '77777794', 'M', '1989-12-03', 'Av. Arequipa 999, Lima'),
+('Natalia', 'Ruiz', 'Fernandez', '987111018', '77777795', 'F', '1997-01-15', 'Calle Los Girasoles 111, Lima'),
+('Hector', 'Gomez', 'Martinez', '987111019', '77777796', 'M', '1978-09-27', 'Av. Universitaria 222, Lima'),
+('Andrea', 'Sanchez', 'Silva', '987111020', '77777797', 'F', '1990-06-08', 'Jr. Carabaya 333, Lima'),
+('Oscar', 'Lopez', 'Rojas', '987111021', '77777798', 'M', '1986-11-11', 'Av. Salaverry 444, Lima'),
+('Monica', 'Ramirez', 'Castro', '987111022', '77777799', 'F', '1982-02-14', 'Calle Los Jardines 555, Lima');
+
+INSERT INTO usuariosClinica (id_Rol, id_Persona, email_Users, pass_Users, estado_Users) 
+VALUES 
+(1, 1, 'admin@clinica.com', '123456', 'Activo'),
+(3, 2, 'jperez@clinica.com', 'doc123', 'Activo'),
+(3, 3, 'mlopez@clinica.com', 'doc123', 'Activo'),
+(3, 4, 'cramirez@clinica.com', 'doc123', 'Activo'),
+(3, 5, 'afernandez@clinica.com', 'doc123', 'Activo'),
+(3, 6, 'pvargas@clinica.com', 'doc123', 'Activo'),
+(3, 7, 'rmendoza@clinica.com', 'doc123', 'Activo'),
+(3, 8, 'scastro@clinica.com', 'doc123', 'Activo'),
+(3, 9, 'jherrera@clinica.com', 'doc123', 'Activo'),
+(3, 10, 'emorales@clinica.com', 'doc123', 'Activo'),
+(3, 11, 'lparedes@clinica.com', 'doc123', 'Activo'),
+(4, 12, 'rgarcia@clinica.com', 'enf123', 'Activo'),
+(4, 13, 'lmartinez@clinica.com', 'enf123', 'Activo'),
+(2, 14, 'lgutierrez@clinica.com', 'adm123', 'Activo'),
+(2, 15, 'msantos@clinica.com', 'adm123', 'Activo'),
+(5, 16, 'maria.gonzales@email.com', 'pac123', 'Activo'),
+(5, 17, 'carlos.rodriguez@email.com', 'pac123', 'Activo'),
+(5, 18, 'ana.torres@email.com', 'pac123', 'Activo'),
+(5, 19, 'isabel.castillo@email.com', 'pac123', 'Activo'),
+(5, 21, 'pedro.garcia@email.com', 'pac123', 'Activo'),
+(5, 22, 'luisa.martinez@email.com', 'pac123', 'Activo'),
+(5, 23, 'jorge.diaz@email.com', 'pac123', 'Activo'),
+(5, 24, 'carmen.torres@email.com', 'pac123', 'Activo'),
+(5, 25, 'roberto.silva@email.com', 'pac123', 'Activo'),
+(5, 26, 'elena.castro@email.com', 'pac123', 'Activo'),
+(5, 27, 'daniel.herrera@email.com', 'pac123', 'Activo'),
+(5, 28, 'susana.morales@email.com', 'pac123', 'Activo'),
+(5, 29, 'fernando.rios@email.com', 'pac123', 'Activo'),
+(5, 30, 'gabriela.flores@email.com', 'pac123', 'Activo'),
+(5, 31, 'pablo.salas@email.com', 'pac123', 'Activo'),
+(5, 32, 'valeria.romero@email.com', 'pac123', 'Activo'),
+(5, 33, 'raul.mendoza@email.com', 'pac123', 'Activo'),
+(5, 34, 'camila.vega@email.com', 'pac123', 'Activo'),
+(5, 35, 'diego.paredes@email.com', 'pac123', 'Activo'),
+(5, 36, 'natalia.ruiz@email.com', 'pac123', 'Activo'),
+(5, 37, 'hector.gomez@email.com', 'pac123', 'Activo'),
+(5, 38, 'andrea.sanchez@email.com', 'pac123', 'Activo'),
+(5, 39, 'oscar.lopez@email.com', 'pac123', 'Activo'),
+(5, 40, 'monica.ramirez@email.com', 'pac123', 'Activo');
+
+UPDATE usuariosClinica 
+SET pass_Users = '$2a$10$HbPPHZ0kXOpZTL22Kag35.iBLIcCSw2gkhQF62MRqIvU0GiGU6v9C'
+WHERE id_Users = 1;
+
+#Doctores
+UPDATE usuariosClinica 
+SET pass_Users = '$2a$10$xSGEWA1i9LPBxXGRzs7nieK6f1xhQ/oD9SR5UCNFM2JONhszDm986'
+WHERE id_Rol = 3;
+
+#Enfermeras
+UPDATE usuariosClinica 
+SET pass_Users = '$2a$10$0QcZRgIuMJzgEY9KD.LUm.Vne9VHdTKlc2xdmqLMsb6ys7w77UqfG'
+WHERE id_Rol = 4;
+
+#Admision
+UPDATE usuariosClinica 
+SET pass_Users = '$2a$10$Sbjhd1ou76TIUha03huV7Og81UM9nZzpy/2NtsNS.2gRAoS/CLZ3.'
+WHERE id_Rol = 2;
+
+#Pacientes
+UPDATE usuariosClinica 
+SET pass_Users = '$2a$10$jrRhZ28XCRHePqHdWb69VuwtJGqSfBlfzHvGmRj4mJBgOWkBLa.6y'
+WHERE id_Rol = 5;
+
+INSERT INTO doctores (id_Persona, id_Especialidad, numero_colegiatura) 
+VALUES 
+(2, 1, 'CMP-90123'),
+(3, 1, 'CMP-90124'),
+(4, 2, 'CMP-90125'),
+(5, 2, 'CMP-90126'),
+(6, 3, 'CNP-45678'),
+(11, 3, 'CNP-45679'),
+(7, 4, 'CMP-90127'),
+(8, 4, 'CMP-90128'),
+(9, 5, 'CMP-90129'),
+(10, 5, 'CMP-90130');
+
+INSERT INTO admision (id_Persona, turno)
+VALUES
+(14, 'Manana'),
+(15, 'Tarde');
+
+INSERT INTO enfermeras (id_Persona, turno) 
+VALUES 
+(12, 'Manana'),
+(13, 'Tarde');
+
+INSERT INTO pacientes (id_Persona, tipo_sangre, alergias, antecedentes_medicos, id_Tutor_Persona) 
+VALUES 
+(16, 'A+', 'Penicilina', 'Hipertension controlada', NULL),
+(17, 'O-', 'Mariscos, polvo', 'Asma leve', NULL),
+(18, 'B+', 'Ninguna', 'Diabetes tipo 2', NULL),
+(20, 'O+', 'Polvo', 'Asma leve', 19),
+(21, 'A-', 'Aspirina', 'Ninguno', NULL),
+(22, 'B+', 'Polen', 'Rinitis alergica', NULL),
+(23, 'AB+', 'Nueces', 'Hipertension', NULL),
+(24, 'O+', 'Lactosa', 'Ninguno', NULL),
+(25, 'A+', 'Penicilina', 'Asma', NULL),
+(26, 'B-', 'Mariscos', 'Diabetes tipo 1', NULL),
+(27, 'AB-', 'Polvo', 'Ninguno', NULL),
+(28, 'O-', 'Ninguna', 'Hipotiroidismo', NULL),
+(29, 'A+', 'Antibioticos', 'Colesterol alto', NULL),
+(30, 'B+', 'Gluten', 'Ninguno', NULL),
+(31, 'O+', 'Picaduras de insectos', 'Ninguno', NULL),
+(32, 'A-', 'Ninguna', 'Migrana', NULL),
+(33, 'B-', 'Latex', 'Problemas cardiacos', NULL),
+(34, 'AB+', 'Huevos', 'Ninguno', NULL),
+(35, 'O-', 'Ninguna', 'Ansiedad', NULL),
+(36, 'A+', 'Sulfas', 'Ninguno', NULL),
+(37, 'B+', 'Polen', 'Artritis', NULL),
+(38, 'AB-', 'Ninguna', 'Ninguno', NULL),
+(39, 'O+', 'Mariscos', 'Problemas digestivos', NULL),
+(40, 'A-', 'Penicilina', 'Ninguno', NULL);
+
+INSERT INTO horarios_doctores (id_Doctor, id_Consultorio, dia_semana, hora_inicio, hora_fin)
+VALUES
+(1, 1, 'Lunes', '08:00:00', '13:00:00'),
+(1, 1, 'Martes', '08:00:00', '13:00:00'),
+(1, 1, 'Miercoles', '08:00:00', '13:00:00'),
+(1, 1, 'Jueves', '08:00:00', '13:00:00'),
+(1, 1, 'Viernes', '08:00:00', '13:00:00'),
+(1, 1, 'Sabado', '08:00:00', '13:00:00'),
+(2, 1, 'Lunes', '14:00:00', '19:00:00'),
+(2, 1, 'Martes', '14:00:00', '19:00:00'),
+(2, 1, 'Miercoles', '14:00:00', '19:00:00'),
+(2, 1, 'Jueves', '14:00:00', '19:00:00'),
+(2, 1, 'Viernes', '14:00:00', '19:00:00'),
+(2, 1, 'Sabado', '14:00:00', '19:00:00'),
+(3, 2, 'Lunes', '08:00:00', '13:00:00'),
+(3, 2, 'Martes', '08:00:00', '13:00:00'),
+(3, 2, 'Miercoles', '08:00:00', '13:00:00'),
+(3, 2, 'Jueves', '08:00:00', '13:00:00'),
+(3, 2, 'Viernes', '08:00:00', '13:00:00'),
+(3, 2, 'Sabado', '08:00:00', '13:00:00'),
+(4, 2, 'Lunes', '14:00:00', '19:00:00'),
+(4, 2, 'Martes', '14:00:00', '19:00:00'),
+(4, 2, 'Miercoles', '14:00:00', '19:00:00'),
+(4, 2, 'Jueves', '14:00:00', '19:00:00'),
+(4, 2, 'Viernes', '14:00:00', '19:00:00'),
+(4, 2, 'Sabado', '14:00:00', '19:00:00'),
+(5, 3, 'Lunes', '08:00:00', '13:00:00'),
+(5, 3, 'Martes', '08:00:00', '13:00:00'),
+(5, 3, 'Miercoles', '08:00:00', '13:00:00'),
+(5, 3, 'Jueves', '08:00:00', '13:00:00'),
+(5, 3, 'Viernes', '08:00:00', '13:00:00'),
+(5, 3, 'Sabado', '08:00:00', '13:00:00'),
+(6, 3, 'Lunes', '14:00:00', '19:00:00'),
+(6, 3, 'Martes', '14:00:00', '19:00:00'),
+(6, 3, 'Miercoles', '14:00:00', '19:00:00'),
+(6, 3, 'Jueves', '14:00:00', '19:00:00'),
+(6, 3, 'Viernes', '14:00:00', '19:00:00'),
+(6, 3, 'Sabado', '14:00:00', '19:00:00'),
+(7, 4, 'Lunes', '08:00:00', '13:00:00'),
+(7, 4, 'Martes', '08:00:00', '13:00:00'),
+(7, 4, 'Miercoles', '08:00:00', '13:00:00'),
+(7, 4, 'Jueves', '08:00:00', '13:00:00'),
+(7, 4, 'Viernes', '08:00:00', '13:00:00'),
+(7, 4, 'Sabado', '08:00:00', '13:00:00'),
+(8, 4, 'Lunes', '14:00:00', '19:00:00'),
+(8, 4, 'Martes', '14:00:00', '19:00:00'),
+(8, 4, 'Miercoles', '14:00:00', '19:00:00'),
+(8, 4, 'Jueves', '14:00:00', '19:00:00'),
+(8, 4, 'Viernes', '14:00:00', '19:00:00'),
+(8, 4, 'Sabado', '14:00:00', '19:00:00'),
+(9, 5, 'Lunes', '08:00:00', '13:00:00'),
+(9, 5, 'Martes', '08:00:00', '13:00:00'),
+(9, 5, 'Miercoles', '08:00:00', '13:00:00'),
+(9, 5, 'Jueves', '08:00:00', '13:00:00'),
+(9, 5, 'Viernes', '08:00:00', '13:00:00'),
+(9, 5, 'Sabado', '08:00:00', '13:00:00'),
+(10, 5, 'Lunes', '14:00:00', '19:00:00'),
+(10, 5, 'Martes', '14:00:00', '19:00:00'),
+(10, 5, 'Miercoles', '14:00:00', '19:00:00'),
+(10, 5, 'Jueves', '14:00:00', '19:00:00'),
+(10, 5, 'Viernes', '14:00:00', '19:00:00'),
+(10, 5, 'Sabado', '14:00:00', '19:00:00');
+
+INSERT INTO citas (id_Cita, id_Paciente, id_Doctor, id_Especialidad, id_Consultorio, fechaHora_Cita, duracion_minutos, estado_Cita, estado_triaje, id_Triaje, tipo_consulta, motivo_Consulta, fCreacion_Cita) 
+VALUES 
+(1, 4, 1, 1, 1, '2025-12-15 09:00:00', 30, 'Completada', 'Completado', 1, 'consulta general', 'Control general y chequeo anual', CURRENT_TIMESTAMP),
+(2, 5, 2, 1, 1, '2025-12-16 15:00:00', 30, 'Completada', 'Completado', 2, 'consulta general', 'Fiebre y dolor de garganta', CURRENT_TIMESTAMP),
+(3, 6, 3, 2, 2, '2025-12-17 11:00:00', 30, 'Completada', 'Completado', 3, 'consulta general', 'Manchas en la piel', CURRENT_TIMESTAMP),
+(4, 7, 4, 2, 2, '2025-12-18 14:00:00', 30, 'Completada', 'Completado', 4, 'consulta general', 'Caida de cabello', CURRENT_TIMESTAMP),
+(5, 8, 5, 3, 3, '2025-12-19 10:00:00', 30, 'Completada', 'Completado', 5, 'consulta general', 'Evaluacion nutricional para perdida de peso', CURRENT_TIMESTAMP),
+(6, 9, 6, 3, 3, '2025-12-20 16:00:00', 30, 'Completada', 'Completado', 6, 'consulta general', 'Plan alimenticio para deportista', CURRENT_TIMESTAMP),
+(7, 10, 7, 4, 4, '2025-12-22 08:30:00', 30, 'Completada', 'Completado', 7, 'consulta general', 'Dolor de muela', CURRENT_TIMESTAMP),
+(8, 11, 8, 4, 4, '2025-12-23 15:30:00', 30, 'Completada', 'Completado', 8, 'consulta general', 'Limpieza dental', CURRENT_TIMESTAMP),
+(9, 12, 9, 5, 5, '2025-12-23 10:00:00', 30, 'Completada', 'Completado', 9, 'consulta general', 'Dolor en el pecho', CURRENT_TIMESTAMP),
+(10, 13, 10, 5, 5, '2025-12-30 16:00:00', 30, 'Completada', 'Completado', 10, 'consulta general', 'Control de presion arterial', CURRENT_TIMESTAMP);
+
+INSERT INTO citas (id_Cita, id_Paciente, id_Doctor, id_Especialidad, id_Consultorio, fechaHora_Cita, duracion_minutos, estado_Cita, estado_triaje, tipo_consulta, motivo_Consulta, fCreacion_Cita) 
+VALUES 
+(11, 14, 1, 1, 1, '2025-11-10 10:00:00', 30, 'Programada', 'Pendiente', 'consulta general', 'Tos persistente', CURRENT_TIMESTAMP),
+(12, 15, 2, 1, 1, '2025-11-22 15:00:00', 30, 'Programada', 'Pendiente', 'consulta general', 'Dolor de cabeza frecuente', CURRENT_TIMESTAMP),
+(13, 16, 3, 2, 2, '2025-11-12 11:00:00', 30, 'Programada', 'Pendiente', 'consulta general', 'Acne severo', CURRENT_TIMESTAMP),
+(14, 17, 4, 2, 2, '2025-11-13 14:00:00', 30, 'Programada', 'Pendiente', 'consulta general', 'Unas quebradizas', CURRENT_TIMESTAMP),
+(15, 18, 5, 3, 3, '2025-11-14 11:00:00', 30, 'Programada', 'Pendiente', 'consulta general', 'Aumento de peso', CURRENT_TIMESTAMP),
+(16, 19, 6, 3, 3, '2025-11-22 16:00:00', 30, 'Programada', 'Pendiente', 'consulta general', 'Desnutricion', CURRENT_TIMESTAMP),
+(17, 20, 7, 4, 4, '2025-11-17 08:30:00', 30, 'Programada', 'Pendiente', 'consulta general', 'Sensibilidad dental', CURRENT_TIMESTAMP),
+(18, 1, 8, 4, 4, '2025-11-18 14:30:00', 30, 'Programada', 'Pendiente', 'consulta general', 'Ortodoncia', CURRENT_TIMESTAMP),
+(19, 2, 9, 5, 5, '2025-11-19 10:00:00', 30, 'Programada', 'Pendiente', 'consulta general', 'Palpitaciones', CURRENT_TIMESTAMP),
+(20, 3, 10, 5, 5, '2025-11-27 15:00:00', 30, 'Programada', 'Pendiente', 'consulta general', 'Cansancio excesivo', CURRENT_TIMESTAMP);
+
+
+INSERT INTO triajes (id_Cita, id_Enfermera, presion_arterial, frecuencia_cardiaca, frecuencia_respiratoria, temperatura, saturacion_oxigeno, peso, talla, imc, tipo_sangre, glucemia, alergias_actualizadas, motivo_consulta_detallado, sintomas_principales, nivel_urgencia, observaciones, estado_Triaje)
+VALUES 
+(1, 1, '120/80', 72, 16, 36.8, 98, 70.5, 1.75, 23.0, 'A-', 95, 'Aspirina confirmada', 'Control rutinario anual, se siente bien', 'Ninguno', 'Baja', 'Paciente estable, signos vitales normales', 'Completado'),
+(2, 2, '130/85', 85, 20, 38.2, 96, 65.0, 1.65, 23.9, 'B+', 100, 'Polen, empeora en primavera', 'Fiebre de 38.5°C, dolor al tragar', 'Fiebre, dolor de garganta, malestar general', 'Media', 'Fiebre moderada, requiere atencion medica', 'Completado'),
+(3, 1, '118/78', 68, 15, 36.9, 99, 58.0, 1.60, 22.7, 'AB+', 92, 'Nueces, reaccion alergica severa', 'Manchas oscuras en rostro que aparecieron hace 2 meses', 'Manchas hiperpigmentadas en mejillas', 'Baja', 'Lesiones benignas aparentemente, requiere evaluacion dermatologica', 'Completado'),
+(4, 2, '125/82', 74, 17, 36.7, 98, 62.5, 1.68, 22.1, 'O+', 88, 'Intolerancia a lactosa', 'Caida excesiva de cabello en los ultimos 3 meses', 'Alopecia, cabello quebradizo', 'Baja', 'Perdida de cabello difusa, posible estres o deficiencia nutricional', 'Completado'),
+(5, 1, '128/84', 76, 18, 36.6, 97, 85.0, 1.70, 29.4, 'A+', 105, 'Penicilina', 'Desea perder 15 kg, ha intentado varias dietas sin exito', 'Sobrepeso, fatiga', 'Baja', 'IMC en rango de sobrepeso, necesita plan nutricional personalizado', 'Completado'),
+(6, 2, '122/79', 70, 16, 36.8, 99, 75.0, 1.82, 22.6, 'B-', 98, 'Mariscos, anafilaxia', 'Atleta que busca optimizar su rendimiento con alimentacion', 'Rendimiento deportivo inferior al esperado', 'Baja', 'Atleta en buen estado fisico, busca optimizacion nutricional', 'Completado'),
+(7, 1, '119/76', 72, 15, 37.0, 98, 68.0, 1.73, 22.7, 'O+', 102, 'Picaduras de insectos, edema', 'Dolor intenso en molar inferior derecho', 'Dolor dental, inflamacion gingival', 'Media', 'Dolor agudo, posible caries profunda o absceso', 'Completado'),
+(8, 2, '121/78', 69, 14, 36.5, 99, 55.0, 1.63, 20.7, 'A-', 95, 'Ninguna alergia conocida', 'Limpieza dental rutinaria y revision general', 'Ninguno', 'Baja', 'Buen estado bucal general, necesita limpieza profesional', 'Completado'),
+(9, 1, '140/90', 88, 22, 36.9, 95, 80.0, 1.75, 26.1, 'B-', 110, 'Latex, erupcion cutanea', 'Dolor opresivo en pecho que se irradia a brazo izquierdo', 'Dolor toracico, disnea', 'Alta', 'Dolor toracico sugestivo, requiere evaluacion cardiologica urgente', 'Completado'),
+(10, 2, '135/88', 82, 19, 36.7, 96, 72.5, 1.78, 22.9, 'AB+', 108, 'Huevos, urticaria', 'Control de hipertension diagnosticada hace 2 años', 'Ninguno actualmente', 'Media', 'Paciente hipertenso en tratamiento, presion elevada en triaje', 'Completado');
+
+UPDATE citas SET id_Triaje = 1 WHERE id_Cita = 1;
+UPDATE citas SET id_Triaje = 2 WHERE id_Cita = 2;
+UPDATE citas SET id_Triaje = 3 WHERE id_Cita = 3;
+UPDATE citas SET id_Triaje = 4 WHERE id_Cita = 4;
+UPDATE citas SET id_Triaje = 5 WHERE id_Cita = 5;
+UPDATE citas SET id_Triaje = 6 WHERE id_Cita = 6;
+UPDATE citas SET id_Triaje = 7 WHERE id_Cita = 7;
+UPDATE citas SET id_Triaje = 8 WHERE id_Cita = 8;
+UPDATE citas SET id_Triaje = 9 WHERE id_Cita = 9;
+UPDATE citas SET id_Triaje = 10 WHERE id_Cita = 10;
+
+#MEDICAMENTOS 
+INSERT INTO medicamentos (nombre_comercial, nombre_generico, presentacion, concentracion, via_administracion, tipo_medicamento)
+VALUES
+#Analgésicos y Antipiréticos
+('Paracetamol', 'Paracetamol', 'Tabletas', '500mg', 'Oral', 'Analgesico'),
+('Paracetamol Forte', 'Paracetamol', 'Tabletas', '1g', 'Oral', 'Analgesico'),
+('Ibuprofeno', 'Ibuprofeno', 'Tabletas', '400mg', 'Oral', 'Antiinflamatorio'),
+('Naproxeno', 'Naproxeno', 'Tabletas', '500mg', 'Oral', 'Antiinflamatorio'),
+
+#Antibióticos Comunes
+('Amoxicilina', 'Amoxicilina', 'Capsulas', '500mg', 'Oral', 'Antibiotico'),
+('Amoxicilina + Ac. Clavulanico', 'Amoxicilina/Clavulanato', 'Tabletas', '875/125mg', 'Oral', 'Antibiotico'),
+('Azitromicina', 'Azitromicina', 'Tabletas', '500mg', 'Oral', 'Antibiotico'),
+('Ciprofloxacino', 'Ciprofloxacino', 'Tabletas', '500mg', 'Oral', 'Antibiotico'),
+
+#Antihipertensivos
+('Losartan', 'Losartan', 'Tabletas', '50mg', 'Oral', 'Antihipertensivo'),
+('Enalapril', 'Enalapril', 'Tabletas', '10mg', 'Oral', 'Antihipertensivo'),
+('Amlodipino', 'Amlodipino', 'Tabletas', '5mg', 'Oral', 'Antihipertensivo'),
+
+#Antidiabéticos
+('Metformina', 'Metformina', 'Tabletas', '850mg', 'Oral', 'Antidiabetico'),
+('Glibenclamida', 'Glibenclamida', 'Tabletas', '5mg', 'Oral', 'Antidiabetico'),
+
+#Protectores Gástricos
+('Omeprazol', 'Omeprazol', 'Capsulas', '20mg', 'Oral', 'Otro'),
+('Ranitidina', 'Ranitidina', 'Tabletas', '150mg', 'Oral', 'Otro'),
+
+#Antihistamínicos
+('Cetirizina', 'Cetirizina', 'Tabletas', '10mg', 'Oral', 'Otro'),
+('Loratadina', 'Loratadina', 'Tabletas', '10mg', 'Oral', 'Otro'),
+
+#Vitaminas
+('Vitamina C', 'Acido Ascorbico', 'Tabletas', '1000mg', 'Oral', 'Vitamina'),
+('Vitamina D3', 'Colecalciferol', 'Capsulas', '1000 UI', 'Oral', 'Vitamina'),
+('Complejo B', 'Complejo B', 'Tabletas', 'Multivitaminico', 'Oral', 'Vitamina');
+
+#DERMATOLOGIA
+INSERT INTO medicamentos (nombre_comercial, nombre_generico, presentacion, concentracion, via_administracion, tipo_medicamento)
+VALUES
+#Tópicos para Acné
+('Tretinoina Crema', 'Tretinoina', 'Crema', '0.05%', 'Topica', 'Otro'),
+('Adapaleno Gel', 'Adapaleno', 'Gel', '0.1%', 'Topica', 'Otro'),
+('Clindamicina Gel', 'Clindamicina', 'Gel', '1%', 'Topica', 'Antibiotico'),
+('Peroxido de Benzoilo', 'Peroxido de Benzoilo', 'Gel', '5%', 'Topica', 'Otro'),
+
+#Corticoides Tópicos
+('Hidrocortisona Crema', 'Hidrocortisona', 'Crema', '1%', 'Topica', 'Antiinflamatorio'),
+('Betametasona Crema', 'Betametasona', 'Crema', '0.05%', 'Topica', 'Antiinflamatorio'),
+('Mometasona Crema', 'Mometasona', 'Crema', '0.1%', 'Topica', 'Antiinflamatorio'),
+
+#Antifúngicos
+('Clotrimazol Crema', 'Clotrimazol', 'Crema', '1%', 'Topica', 'Otro'),
+('Ketoconazol Crema', 'Ketoconazol', 'Crema', '2%', 'Topica', 'Otro'),
+('Terbinafina Crema', 'Terbinafina', 'Crema', '1%', 'Topica', 'Otro'),
+
+#Antibióticos Sistémicos para Dermatología
+('Doxiciclina', 'Doxiciclina', 'Capsulas', '100mg', 'Oral', 'Antibiotico'),
+('Minociclina', 'Minociclina', 'Capsulas', '100mg', 'Oral', 'Antibiotico'),
+
+#Protectores y Humectantes
+('Protector Solar FPS 50+', 'Oxido de Zinc/Dioxido de Titanio', 'Crema', 'FPS 50+', 'Topica', 'Otro'),
+('Crema Humectante', 'Urea', 'Crema', '10%', 'Topica', 'Otro');
+
+#NUTRICION
+INSERT INTO medicamentos (nombre_comercial, nombre_generico, presentacion, concentracion, via_administracion, tipo_medicamento)
+VALUES
+#Multivitamínicos
+('Multivitaminico Completo', 'Multivitaminico', 'Tabletas', 'Complejo', 'Oral', 'Vitamina'),
+('Vitamina B12', 'Cianocobalamina', 'Tabletas', '1000mcg', 'Oral', 'Vitamina'),
+('Acido Folico', 'Acido Folico', 'Tabletas', '5mg', 'Oral', 'Vitamina'),
+('Hierro', 'Sulfato Ferroso', 'Tabletas', '300mg', 'Oral', 'Otro'),
+
+#Suplementos Minerales
+('Calcio + Vitamina D', 'Carbonato de Calcio/Vitamina D', 'Tabletas', '600mg/400UI', 'Oral', 'Vitamina'),
+('Magnesio', 'Citrato de Magnesio', 'Tabletas', '400mg', 'Oral', 'Otro'),
+('Zinc', 'Gluconato de Zinc', 'Tabletas', '50mg', 'Oral', 'Otro'),
+
+#Omega y Antioxidantes
+('Omega 3', 'Acidos Grasos Omega 3', 'Capsulas', '1000mg', 'Oral', 'Vitamina'),
+('Vitamina E', 'Alfa Tocoferol', 'Capsulas', '400 UI', 'Oral', 'Vitamina'),
+
+#Enzimas Digestivas
+('Enzimas Digestivas', 'Amilasa/Lipasa/Proteasa', 'Capsulas', 'Complejo', 'Oral', 'Otro'),
+('Probioticos', 'Lactobacillus/Bifidobacterium', 'Capsulas', '10 mil millones UFC', 'Oral', 'Otro'),
+
+#Para Control de Peso
+('Fibra Dietetica', 'Psyllium', 'Polvo', '5g/sobre', 'Oral', 'Otro'),
+('L-Carnitina', 'L-Carnitina', 'Tabletas', '500mg', 'Oral', 'Otro');
+
+#ODONTOLOGIA
+INSERT INTO medicamentos (nombre_comercial, nombre_generico, presentacion, concentracion, via_administracion, tipo_medicamento)
+VALUES
+#Anestésicos Locales
+('Lidocaina con Epinefrina', 'Lidocaina/Epinefrina', 'Inyectable', '2%/1:100,000', 'Otra', 'Otro'),
+('Articaina', 'Articaina', 'Inyectable', '4%', 'Otra', 'Otro'),
+
+#Antibióticos para Infecciones Dentales
+('Amoxicilina 500mg', 'Amoxicilina', 'Capsulas', '500mg', 'Oral', 'Antibiotico'),
+('Clindamicina', 'Clindamicina', 'Capsulas', '300mg', 'Oral', 'Antibiotico'),
+('Metronidazol', 'Metronidazol', 'Tabletas', '500mg', 'Oral', 'Antibiotico'),
+
+#Analgésicos Dentales
+('Ketorolaco', 'Ketorolaco', 'Tabletas', '10mg', 'Oral', 'Analgesico'),
+('Tramadol', 'Tramadol', 'Capsulas', '50mg', 'Oral', 'Analgesico'),
+('Nimesulida', 'Nimesulida', 'Tabletas', '100mg', 'Oral', 'Antiinflamatorio'),
+
+#Enjuagues y Antisépticos
+('Clorhexidina Enjuague', 'Clorhexidina', 'Solucion', '0.12%', 'Topica', 'Otro'),
+('Peroxido de Hidrogeno', 'Peroxido de Hidrogeno', 'Solucion', '3%', 'Topica', 'Otro'),
+
+#Pasta Dental Medicada
+('Pasta con Fluor', 'Fluoruro de Sodio', 'Pasta Dental', '1450 ppm', 'Topica', 'Otro'),
+('Gel de Fluor', 'Fluoruro de Sodio', 'Gel', '1.23%', 'Topica', 'Otro'),
+
+#Cicatrizantes
+('Acido Hialuronico Gel', 'Acido Hialuronico', 'Gel Bucal', '0.2%', 'Topica', 'Otro');
+
+#CARDIOLOGIA
+INSERT INTO medicamentos (nombre_comercial, nombre_generico, presentacion, concentracion, via_administracion, tipo_medicamento)
+VALUES
+#Antihipertensivos
+('Losartan Potasico', 'Losartan', 'Tabletas', '100mg', 'Oral', 'Antihipertensivo'),
+('Enalapril Maleato', 'Enalapril', 'Tabletas', '20mg', 'Oral', 'Antihipertensivo'),
+('Amlodipino Besilato', 'Amlodipino', 'Tabletas', '10mg', 'Oral', 'Antihipertensivo'),
+('Valsartan', 'Valsartan', 'Tabletas', '160mg', 'Oral', 'Antihipertensivo'),
+('Hidroclorotiazida', 'Hidroclorotiazida', 'Tabletas', '25mg', 'Oral', 'Antihipertensivo'),
+
+#Betabloqueadores
+('Atenolol', 'Atenolol', 'Tabletas', '50mg', 'Oral', 'Otro'),
+('Metoprolol', 'Metoprolol', 'Tabletas', '50mg', 'Oral', 'Otro'),
+('Carvedilol', 'Carvedilol', 'Tabletas', '25mg', 'Oral', 'Otro'),
+
+#Antiagregantes Plaquetarios
+('Acido Acetilsalicilico', 'Aspirina', 'Tabletas', '100mg', 'Oral', 'Otro'),
+('Clopidogrel', 'Clopidogrel', 'Tabletas', '75mg', 'Oral', 'Otro'),
+
+#Estatinas (Control de Colesterol)
+('Atorvastatina', 'Atorvastatina', 'Tabletas', '20mg', 'Oral', 'Otro'),
+('Simvastatina', 'Simvastatina', 'Tabletas', '40mg', 'Oral', 'Otro'),
+('Rosuvastatina', 'Rosuvastatina', 'Tabletas', '10mg', 'Oral', 'Otro'),
+
+#Anticoagulantes
+('Warfarina', 'Warfarina', 'Tabletas', '5mg', 'Oral', 'Otro'),
+('Rivaroxaban', 'Rivaroxaban', 'Tabletas', '20mg', 'Oral', 'Otro'),
+
+#Diuréticos
+('Furosemida', 'Furosemida', 'Tabletas', '40mg', 'Oral', 'Otro'),
+('Espironolactona', 'Espironolactona', 'Tabletas', '25mg', 'Oral', 'Otro'),
+
+#Nitratos (Angina)
+('Isosorbide Mononitrato', 'Isosorbide', 'Tabletas', '20mg', 'Oral', 'Otro'),
+('Nitroglicerina Sublingual', 'Nitroglicerina', 'Tabletas', '0.5mg', 'Sublingual', 'Otro'),
+
+#Digoxina (Insuficiencia Cardíaca)
+('Digoxina', 'Digoxina', 'Tabletas', '0.25mg', 'Oral', 'Otro');
+
+#-------------------------PROBANDO NUEVO CODIGO--------------------------------
+
+show tables;
+use sistemarene;
+SELECT * FROM rolesClinica;
+SELECT * FROM usuariosclinica;
+SELECT * FROM admision;
+SELECT * FROM personas;
+select * from doctores;
+SELECT * FROM pacientes;
+SELECT * FROM citas;
+SELECT * FROM triajes;
+SELECT * FROM doctores;
